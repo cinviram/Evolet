@@ -5,7 +5,9 @@ import { AuthService } from '../../auth/auth.service';
 //Import API
 import { ApiUserService } from '../../service-api/api-user/api-user.service';
 
+//modales de usuario
 import {ModalUserInfoComponent} from '../modal-user-info/modal-user-info.component';
+import {ModalCrearUserComponent} from '../modal-crear-user/modal-crear-user.component'
 import {BsModalService,BsModalRef } from 'ngx-bootstrap/modal'
 
 // ES6 Modules or TypeScript
@@ -40,6 +42,13 @@ export class DashboardComponent implements OnInit {
       this.usuarios=data;
       console.log(data)
     })
+  }
+
+
+  abrirModalUser(){
+    console.log('click')
+    //abrimos el modal de crear usuario
+    this.bsModalRef= this.bsModalService.show(ModalCrearUserComponent)
   }
 
   //Enviar variable al modal
