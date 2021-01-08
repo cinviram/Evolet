@@ -8,7 +8,7 @@
         </a>
         <ul class="list-group">
             <li class="list-group-item" routerLink="../dashboard">Usuarios</li>
-            <li class="list-group-item"routerLink="../agenda-general">Eventos Generales</li>
+            <li class="list-group-item" routerLink="../agenda-general">Eventos Generales</li>
             <li class="list-group-item">Eventos Personalizados</li>
             <li class="list-group-item active">Mi Perfil</li>
             <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
@@ -43,8 +43,8 @@
                         <div class="edit-profile-image">
                             <span class="edit-profile-image__information">
                                 <span class="fa fa-camera"></span>
-                                <span class="edit-profile-image__label">
-                                    Profilbild ändern
+                                <span class="edit-profile-image__label" *ngIf="AuthService.userState as user">
+                                    {{user.displayName}}
                                 </span>
                             </span>
                         </div>
@@ -55,11 +55,18 @@
                     <h5>Información personal</h5>
                     <div class="row -spacing-b">
                         <div class="col-md-3">
-                            <p class="-typo-copy">Username</p>
-                            <p class="-typo-copy">Vorname</p>
-                            <p class="-typo-copy">Nachname</p>
-                            <p class="-typo-copy">Geburtsdatum</p>
-                            <p class="-typo-copy">E-Mail Adresse</p>
+                            <p class="-typo-copy">Nombres</p>
+                            <p class="-typo-copy">Correo</p>
+                            <p class="-typo-copy">Fecha de nacimiento</p>
+                            <p class="-typo-copy">Celular</p>
+                            <p class="-typo-copy">Alias</p>
+                            <p class="-typo-copy">Empresa</p>
+                            <p class="-typo-copy">Rol</p>
+                            <p class="-typo-copy">Sexo</p>
+                            <button class="btn">
+                                <span class="btn__icon fa fa-pencil"></span>
+                                <span class="btn__label">Editar información</span>
+                            </button>
                         </div>
                         <div class="col-md-3">
                             <p class="-typo-copy -typo-copy--blue">fpecher</p>
@@ -68,20 +75,7 @@
                             <p class="-typo-copy -typo-copy--blue">01.01.1010</p>
                             <p class="-typo-copy -typo-copy--blue">dummy@dummy.com</p>
                         </div>
-                        <div class="col-md-3">
-                            <p class="-typo-copy">PLZ<br>Wohnort</p>
-                            <p class="-typo-copy">Passwort</p>
-
-                            <button class="btn btn--green">
-                                <span class="btn__icon fa fa-pencil"></span>
-                                <span class="btn__label">Editar información</span>
-                            </button>
-
-                        </div>
-                        <div class="col-md-3">
-                            <p class="-typo-copy -typo-copy--blue">12345<br>Musterstadt</p>
-                            <p class="-typo-copy -typo-copy--blue">******</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
