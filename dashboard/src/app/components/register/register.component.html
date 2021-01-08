@@ -1,0 +1,50 @@
+<div id="login-box">
+  <div class="left">
+    <h1>Formulario de Registro</h1>
+
+    <input type="text" name="username" placeholder="Nombres" />
+    <input type="text" name="username" placeholder="Alias" />
+    <input type="text" name="email" placeholder="Correo" />
+    <input type="password" name="password" placeholder="Contraseña" />
+    <input type="password" name="password2" placeholder="Confirmación de contraseña" />
+    <input type="password" name="telefono" placeholder="Teléfono" />
+    <p>Rol:
+      <select name="rol">
+        <option>entrenador</option>
+        <option>gerente</option>
+      </select>
+    </p>
+    <p>Empresa:
+      <select name="empresa">
+        <option>Evolet S.A.</option>
+        <option>ESPOL</option>
+        <option>Corporación El Rosado</option>
+        <option>Cervecería Nacional</option>
+      </select>
+    </p>
+    <p>Sexo:
+      <select name="sexo">
+        <option>Masculino</option>
+        <option>Femenino</option>
+      </select>
+    </p>
+    <label for="start">Fecha de nacimiento:</label>
+    <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
+    <label for="start">Avatar:</label>
+    <form enctype="multipart/form-data" action="uploader.php" method="POST">
+      <input name="uploadedfile" type="file" />
+      <input type="submit" value="Subir archivo"/>
+    </form>
+
+    <input class="register" type="submit" name="signup_submit" value="Registrar" />
+  </div>
+
+  <div class="right">
+    <span class="loginwith">Sign in with<br />social network</span>
+
+    <!--<button class="social-signin facebook">Log in with facebook</button>-->
+    <button class="social-signin twitter">Ingresa con Twitter</button>
+    <button class="social-signin google" (click)="AuthService.GoogleAuth()">Ingresa con Google+</button>
+  </div>
+  <!--<div class="or">O</div>-->
+</div>

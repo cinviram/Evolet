@@ -1,0 +1,25 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> INGRESO </h2>
+      <a routerLink="../register" class="inactive underlineHover">REGISTRO</a>
+  
+      <!-- Icon 
+      <div class="fadeIn first">
+        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      </div>-->
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" class="form-control" placeholder="Correo" #userName required>
+        <input type="text" class="fadeIn third" placeholder="Contraseña" #userPassword required >
+        <input type="submit" (click)="AuthService.SignIn(userName.value, userPassword.value)" class="fadeIn fourth" value="Ingresar">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" routerLink="../forgot-password">Click para recuperar contraseña.</a>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>

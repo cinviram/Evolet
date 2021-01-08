@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h4 class="modal-title">Información del usuario
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;
+        </span>
+    </button>
+</div>
+<div class="modal-body"> 
+<p>Nombres:</p>
+<input id="nombres" [disabled]='statusInput' placeholder="nombres" [ngModel]="usuarioActual.nombres">
+<p>Correo: </p>
+<input id="correo" [disabled]='statusInput' placeholder="Correo" [ngModel]="usuarioActual.correo">
+<p>Celular: </p>
+<input id="celular" [disabled]='statusInput' placeholder="Celular" [ngModel]="usuarioActual.celular">
+<p>Alias: </p>
+<input id="alias" [disabled]='statusInput' placeholder="Alias" [ngModel]="usuarioActual.alias">
+<p>Sexo: </p>
+<input id="sexo" [disabled]='statusInput' placeholder="Sexo" [ngModel]="usuarioActual.sexo">
+<p>Fecha de nacimiento: </p>
+<input id="fec_nac" [disabled]='statusInput' placeholder="Fecha nacimiento" [ngModel]="usuarioActual.fecha">
+<p>Tipo de usuario: </p>
+<input id="tipo_user" [disabled]='statusInput' placeholder="Tipo de usuario" [ngModel]="usuarioActual.tipoUsuario">
+<p>Empresa: </p>
+<input id="empresa" [disabled]='statusInput' placeholder="Empresa" [ngModel]="usuarioActual.empresa">
+<p>Cargo: </p>
+<input id="cargo" [disabled]='statusInput' placeholder="Cargo" [ngModel]="usuarioActual.cargo">
+
+
+<button class="btn btn-delete" (click)='EditarUser($event)'>{{name_button_edit}}</button>
+</div>
+
+
+

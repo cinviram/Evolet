@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Información del evento
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()"> 
+        <span aria-hidden="true">&times;
+        </span>
+    </button>
+</div>
+<div class="modal-body"> 
+<p>Título:</p>
+<input id="titulo" [disabled]='statusInput' placeholder="Titulo" [ngModel]="eventoActual.titulo">
+<p>Descripción: </p>
+<input id="descripcion" [disabled]='statusInput' placeholder="Descripcion" [ngModel]="eventoActual.descripcion">
+<p>Costo: </p>
+<input id="costo" [disabled]='statusInput' placeholder="Costo" [ngModel]="eventoActual.costo"> 
+<p>Instructor: </p>
+<input id="instructor" [disabled]='statusInput' placeholder="Instructor" [ngModel]="eventoActual.nombreInstructor">
+<p>Inscripción: </p>
+<input id="inscripcion" [disabled]='statusInput' placeholder="Inscripcion" [ngModel]="eventoActual.inscripcion">
+<p>Fecha límite: </p>
+<input id="fecha" [disabled]='statusInput' placeholder="Fecha limite" [ngModel]="eventoActual.fechaLimite2[0]">
+<p>Enlace de Facebook: </p>
+<input id="enlace" [disabled]='statusInput' placeholder="Enlace Facebook" [ngModel]="eventoActual.enlace_facebook">
+<button class="btn btn-delete" (click)='EditarEvento($event)'>{{name_button_edit}}</button>
+</div>
+
+

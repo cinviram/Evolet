@@ -1,0 +1,78 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+
+<div class="app-container">
+
+  <nav class="nav">
+
+    <a href="#" class="nav__logo">
+    </a>
+    <ul class="list-group">
+      <li class="list-group-item" routerLink="../dashboard">Usuarios</li>
+      <li class="list-group-item active">Eventos Generales</li>
+      <li class="list-group-item">Eventos Personalizados</li>
+      <li class="list-group-item" routerLink="../profile">Mi Perfil</li>
+      <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
+        Salir
+      </button>
+    </ul>
+  </nav>
+
+  <div class="app-view">
+
+    <nav class="utility-bar">
+      <div class="utility-bar__inner">
+        <a a routerLink="../profile" class="utility-bar__account">
+          <span class="utility-bar__account-avatar"></span>
+          <div class="row" *ngIf="AuthService.userState as user">
+            <span class="utility-bar__account-name">{{user.displayName}}</span>
+            <!--Crear acceso al perfil-->
+          </div>
+        </a>
+      </div>
+    </nav>
+    <main class="content">
+      <h1>Eventos Generales</h1>
+      <button type="button" (click)="crearEvento($event)">
+        Crear
+      </button>
+      <!--Inicio de información current user-->
+      <!--<div class="container mt-5" style="max-width: 600px">
+        <div class="row" *ngIf="AuthService.userState as user">
+          <h2>Bienvenido: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
+          <p>User ID: <strong>{{user.uid}}</strong></p>
+          <p>Email: <strong>{{user.email}}</strong></p>
+        </div>
+      </div>-->
+      <!--Fin de información current user-->
+      <table>
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Instructor</th>
+            <th>Costo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let evento of eventos'>
+            <td>
+              {{evento.titulo}}
+            </td>
+            <td>{{evento.fechaLimite2[0]}}</td>
+            <td>{{evento.fechaLimite2[1]}}</td>
+            <td>{{evento.nombreInstructor}}</td>
+            <td>{{evento.costo}}</td>
+            <td>
+              <!--Cambiar a color verde-->
+              <button id='{{evento.idEvento}}' (click)="verDetalle($event)" class="btn">Ver más</button>
+              <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+  </div>
+
+</div>

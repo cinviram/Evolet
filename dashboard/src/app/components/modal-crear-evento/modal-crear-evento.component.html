@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Creación de evento
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()"> 
+        <span aria-hidden="true">&times;
+        </span>
+    </button>
+</div>
+<div class="modal-body"> 
+<p>Título:</p>
+<input id="titulo" placeholder="Titulo">
+<p>Descripción: </p>
+<input id="descripcion" placeholder="Descripcion">
+<p>Costo: </p>
+<input id="costo" placeholder="Costo"> 
+<p>Instructor: </p>
+<input id="instructor" placeholder="Instructor">
+<p>Inscripción: </p>
+<input id="inscripcion" placeholder="Inscripcion">
+<p>Fecha creación: </p>
+<input id="fecha_creacion" placeholder="Fecha creacion">
+<p>Fecha límite: </p>
+<input id="fecha_limite" placeholder="Fecha limite">
+<p>Enlace de Facebook: </p>
+<input id="enlace" placeholder="Enlace Facebook">
+<button class="btn btn-delete" (click)="crearEvento()">Crear</button>
+</div>
