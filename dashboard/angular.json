@@ -121,8 +121,5 @@
       }
     }
   },
-  "defaultProject": "dashboard-app",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "dashboard-app"
 }

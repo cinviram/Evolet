@@ -1,4 +1,8 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
 
 <div class="app-container">
 
@@ -49,7 +53,8 @@
             <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar usuario" (keyup)='buscarUsuarioCoincidencia($event)'>
           </div>
           <div class="col-3">
-            <button type="button" (click)='abrirModalUser()'>Crear</button>
+            <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
+            <button class="btn" (click)='abrirModalUser()'>Crear usuario <i class="fa fa-user-plus"></i></button>
           </div>
         </div>
       
@@ -81,8 +86,8 @@
             <td>{{user.celular}}</td>
             <td>
               <!--Cambiar a color verde-->
-              <button id='{{user.idUser}}' (click)="verDetalle($event)" class="btn">Ver más</button>
-              <button id='{{user.idUser}}' (click)="eliminarUsuario($event)" class="btn btn-delete">Eliminar</button>
+              <button id='{{user.idUser}}' (click)="verDetalle($event)" class="btn">Ver más <i class="fa fa-info-circle"></i></button>
+              <button id='{{user.idUser}}' (click)="eliminarUsuario($event)" class="btn btn-delete">Eliminar <i class="fa fa-user-times"></i></button>
               <!-- <button id='{{user.idUser}}' (click)="editarUsuario($event)" class="btn btn-delete">Editar</button> -->
             </td>
           </tr>

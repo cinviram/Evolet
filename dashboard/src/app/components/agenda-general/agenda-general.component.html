@@ -1,4 +1,6 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
 <div class="app-container">
 
@@ -32,9 +34,7 @@
     </nav>
     <main class="content">
       <h1>Eventos Generales</h1>
-      <button type="button" (click)="crearEvento($event)">
-        Crear
-      </button>
+      <button class="btn" (click)="crearEvento($event)">Crear evento <i class="fa fa-plus"></i></button>
       <!--Inicio de información current user-->
       <!--<div class="container mt-5" style="max-width: 600px">
         <div class="row" *ngIf="AuthService.userState as user">
@@ -65,8 +65,8 @@
             <td>{{evento.costo}}</td>
             <td>
               <!--Cambiar a color verde-->
-              <button id='{{evento.idEvento}}' (click)="verDetalle($event)" class="btn">Ver más</button>
-              <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar</button>
+              <button id='{{evento.idEvento}}' (click)="verDetalle($event)" class="btn">Ver más  <i class="fa fa-info-circle"></i></button>
+              <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar <i class='fas fa-trash-alt'></i></button>
             </td>
           </tr>
         </tbody>
