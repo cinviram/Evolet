@@ -12,7 +12,7 @@
       <!-- Login Form -->
       <form>
         <input type="text" class="form-control" placeholder="Correo" #userName required>
-        <input type="text" class="fadeIn third" placeholder="Contraseña" #userPassword required >
+        <input type="password" class="fadeIn third" placeholder="Contraseña" #userPassword required >
         <input type="submit" (click)="AuthService.SignIn(userName.value, userPassword.value)" class="fadeIn fourth" value="Ingresar">
       </form>
   
