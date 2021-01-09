@@ -6,28 +6,72 @@
         </span>
     </button>
 </div>
-<div class="modal-body"> 
-<p>Nombres:</p>
-<input id="nombres" [disabled]='statusInput' placeholder="nombres" [ngModel]="usuarioActual.nombres">
-<p>Correo: </p>
-<input id="correo" [disabled]='statusInput' placeholder="Correo" [ngModel]="usuarioActual.correo">
-<p>Celular: </p>
-<input id="celular" [disabled]='statusInput' placeholder="Celular" [ngModel]="usuarioActual.celular">
-<p>Alias: </p>
-<input id="alias" [disabled]='statusInput' placeholder="Alias" [ngModel]="usuarioActual.alias">
-<p>Sexo: </p>
-<input id="sexo" [disabled]='statusInput' placeholder="Sexo" [ngModel]="usuarioActual.sexo">
-<p>Fecha de nacimiento: </p>
-<input id="fec_nac" [disabled]='statusInput' placeholder="Fecha nacimiento" [ngModel]="usuarioActual.fecha">
-<p>Tipo de usuario: </p>
-<input id="tipo_user" [disabled]='statusInput' placeholder="Tipo de usuario" [ngModel]="usuarioActual.tipoUsuario">
-<p>Empresa: </p>
-<input id="empresa" [disabled]='statusInput' placeholder="Empresa" [ngModel]="usuarioActual.empresa">
-<p>Cargo: </p>
-<input id="cargo" [disabled]='statusInput' placeholder="Cargo" [ngModel]="usuarioActual.cargo">
 
-
-<button class="btn btn-delete" (click)='EditarUser($event)'>{{name_button_edit}}</button>
+<div class="container">
+        <div class="form-group row">
+            <label for="inputNombres" class="col-sm-3 col-form-label">Nombres (*)</label>
+            <div class="col-sm-7">
+              <input [disabled]='statusInput' type="text" class="form-control" id="nombres" placeholder="Nombres completos" [ngModel]="usuarioActual.nombres">
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputCorreo" class="col-sm-3 col-form-label">Correo (*)</label>
+          <div class="col-sm-7">
+            <input [disabled]='statusInput' type="email" class="form-control" id="correo" placeholder="Correo electrónico" [ngModel]="usuarioActual.correo">
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputCelular" class="col-sm-3 col-form-label">Celular (*)</label>
+            
+            <div class="col-sm-7">
+              <input [disabled]='statusInput' type="tel" class="form-control" id="celular" placeholder="Móvil" [ngModel]="usuarioActual.celular">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-3 col-form-label">Sexo (*)</label>
+            <div class="col-sm-7">
+                <select class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
+                    <option selected value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                  </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputFecha" class="col-sm-3 col-form-label">Fecha de nacimiento (*)</label>
+            <div class="col-sm-7">
+              <input [disabled]='statusInput' type="date" class="form-control" id="fec_nac" [ngModel]="usuarioActual.fecha">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputAlias" class="col-sm-3 col-form-label">Alias</label>
+            <div class="col-sm-7">
+              <input [disabled]='statusInput' type="text" class="form-control" id="alias" [ngModel]="usuarioActual.alias">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-3 col-form-label">Tipo de usuario</label>
+            <div class="col-sm-7">
+                <select class="custom-select mr-sm-2" id="tipo_user" (change)="cambioTipo($event)" [ngModel]="usuarioActual.tipoUsuario">
+                    <option selected value="individual">Individual</option>
+                    <option value="empresarial">Empresarial</option>
+                  </select>
+            </div>
+        </div>
+        <div *ngIf="mostrarEmpresaCargo" class="form-group row"> 
+            <label for="inputEmpresa" class="col-sm-3 col-form-label">Empresa</label>
+            <div class="col-sm-7">
+                <input [disabled]='statusInput' type="text" class="form-control" id="empresa" [ngModel]="usuarioActual.empresa">
+            </div>
+        </div>
+        <div *ngIf="mostrarEmpresaCargo" class="form-group row">
+            <label for="inputCargo" class="col-sm-3 col-form-label">Cargo</label>
+            <div class="col-sm-7">
+                <input [disabled]='statusInput' type="text" class="form-control" id="cargo" [ngModel]="usuarioActual.cargo">
+            </div>
+        </div>
+        
+    <button id="btn_editar" class="btn btn-delete" (click)='EditarUser($event)'>{{name_button_edit}}</button>
+    <!-- <button id="btn_crear" type="button" class="btn btn-primary" (click)='crearUsuario()'>Crear Usuario</button> -->
 </div>
 
 

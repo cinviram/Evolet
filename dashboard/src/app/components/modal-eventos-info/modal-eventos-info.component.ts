@@ -64,7 +64,6 @@ export class ModalEventosInfoComponent implements OnInit {
     }
   }
 
-
   obtenerEventoActualizado() {
     var objectTitulo: any = document.getElementById("titulo")
     var objectDescripcion: any = document.getElementById("descripcion")

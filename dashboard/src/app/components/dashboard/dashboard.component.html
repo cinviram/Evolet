@@ -36,9 +36,23 @@
 
     <main class="content">
       <h1>Usuarios</h1>
-      <button type="button" (click)='abrirModalUser()'>
-        Crear
-      </button>
+
+        <div class="row">
+          <div class="col-3">
+            <select id="tipo_user" class="form-control" (change)="cambioTipo($event)">
+              <option value="todos" selected>Todos</option>
+              <option value="individual">Individual</option>
+              <option value="empresarial">Empresarial</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar usuario" (keyup)='buscarUsuarioCoincidencia($event)'>
+          </div>
+          <div class="col-3">
+            <button type="button" (click)='abrirModalUser()'>Crear</button>
+          </div>
+        </div>
+      
       <!--Inicio de información current user-->
       <!--<div class="container mt-5" style="max-width: 600px">
         <div class="row" *ngIf="AuthService.userState as user">

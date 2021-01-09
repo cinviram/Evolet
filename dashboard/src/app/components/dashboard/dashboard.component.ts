@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
 
   //Variable global
   usuarios: any = []
+  usuariosRespado:any=[]
 
   user:any={'id': '123', 'empresa': 'Cinermark'}
 
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.ApiUserService.obtenerUsuarios().subscribe(data => {
       //Asignacion a variable global (usuarios)
+      this.usuariosRespado=data;
       this.usuarios=data;
       console.log(data)
     })
@@ -92,6 +94,47 @@ export class DashboardComponent implements OnInit {
         return usuario;
       }
     }
+  }
+
+  cambioTipo(event){
+   
+    var objectTipo:any = document.getElementById("tipo_user")
+    var tipo= objectTipo.value
+    
+    let coincidencias=[];
+    if(tipo=='todos'){
+      coincidencias=this.usuariosRespado;
+    }else{
+      for(let indice in this.usuariosRespado){
+        let elemento=this.usuariosRespado[indice];
+        if(elemento['tipoUsuario']==tipo){
+          coincidencias.push(elemento);
+        }
+      }
+    }
+    
+    this.usuarios=coincidencias
+  }
+
+  buscarUsuarioCoincidencia(event){
+    let palabra=event.target.value;
+    console.log(palabra)
+
+    let palabraMinus=palabra.toLowerCase();
+    let coincidencias=[]
+
+    for(let indice in this.usuariosRespado){
+      let elemento=this.usuariosRespado[indice];
+      let nombres=elemento.nombres;
+      let nombresMinus=nombres.toLowerCase();
+
+      if(nombresMinus.indexOf(palabraMinus)!=-1){
+        coincidencias.push(elemento)
+      }
+
+    }
+
+    this.usuarios=coincidencias
   }
 
 }

@@ -16,6 +16,9 @@ import Swal from 'sweetalert2'
 })
 export class ModalUserInfoComponent implements OnInit {
 
+  //variables de estado
+  mostrarEmpresaCargo=false
+
   //variables de configuracion
   statusInput=true;
   name_button_edit='Editar'
@@ -43,15 +46,22 @@ export class ModalUserInfoComponent implements OnInit {
     this.usuarioActual=this.list[0];
     console.log('usuario actual: ',this.usuarioActual)
 
+    //verifico que tipo de usuario es, para habilitar sus inputs respectivos
+    if(this.usuarioActual['tipoUsuario']=='empresarial'){
+      this.mostrarEmpresaCargo=true;
+    }
+
   }
 
   EditarUser(event){
+    
     console.log(event.target.id)
     if(this.statusInput==true){
       this.statusInput=false
       this.name_button_edit='Guardar'
     }else{
       console.log('Guardando...')
+      this.cambiarTextoButton();
       console.log(this.usuarioActual)
       let usuarioActualizado=this.obtenerUsuarioActualizado();
       this.ApiUserService.actualizarUsuario(usuarioActualizado).subscribe(result=>{
@@ -89,14 +99,41 @@ export class ModalUserInfoComponent implements OnInit {
     var sexo= objectSexo.value
     var fecha= objectFecha.value
     var tipo= objectTipo.value
-    var empresa= objectEmpresa.value
-    var cargo= objectCargo.value
+
+    var empresa= ''
+    var cargo= ''
+
+    if(tipo=='empresarial'){
+      empresa= objectEmpresa.value
+      cargo= objectCargo.value
+    }
+
+    
 
     //Usuario editado
-    let usuarioModificado={'idUser': this.usuarioActual.idUser,'nombres': nombres, 'correo':correo, 'celular':celular, 'alias':alias, 'sexo':sexo,'fecha':"1998-07-03",'tipo':tipo,'empresa':empresa,'cargo':cargo}
+    let usuarioModificado={'idUser': this.usuarioActual.idUser,'nombres': nombres, 'correo':correo, 'celular':celular, 'alias':alias, 'sexo':sexo,'fecha':fecha,'tipo':tipo,'empresa':empresa,'cargo':cargo}
     console.log('nombre nuevo: ',usuarioModificado)
 
     return usuarioModificado
+  }
+
+  cambioTipo(event){
+    console.log(event)
+
+    var objectTipo:any = document.getElementById("tipo_user")
+    var tipo= objectTipo.value
+    if(tipo=='empresarial'){
+      this.mostrarEmpresaCargo=true;
+    }else{
+      this.mostrarEmpresaCargo=false
+    }
+  }
+
+  cambiarTextoButton(){
+    var uno = document.getElementById('btn_editar');
+    uno.innerHTML='Actualizando ...'
+    uno.setAttribute('disabled', "true");
+
   }
 
 }
