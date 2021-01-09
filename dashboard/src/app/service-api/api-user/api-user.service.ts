@@ -14,6 +14,11 @@ export class ApiUserService {
     return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerUsuariosTodos`); 
   }
 
+  obtenerTelefonos(){
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerPrefijoPais`); 
+  }
+
+ 
   crearUsuario(user){
     return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/crearUsuario`,user); 
   }
