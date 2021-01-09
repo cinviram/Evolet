@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AgendaGeneralComponent } from './components/agenda-general/agenda-general.component';
+import {AgendaPersonalizadaComponent} from './components/agenda-personalizada/agenda-personalizada.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 
@@ -17,6 +18,7 @@ const appRoutes = [
     { path: 'dashboard', component: DashboardComponent,  pathMatch: 'full'},
     { path: 'forgot-password', component: ForgotPasswordComponent,pathMatch: 'full'},
     { path: 'agenda-general', component: AgendaGeneralComponent,pathMatch: 'full'},
+    { path: 'agenda-personalizada', component: AgendaPersonalizadaComponent,pathMatch: 'full'},
     { path: 'profile', component: ProfileComponent,pathMatch: 'full'},
   ];
 

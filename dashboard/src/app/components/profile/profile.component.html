@@ -11,7 +11,7 @@
         <ul class="list-group">
             <li class="list-group-item" routerLink="../dashboard">Usuarios</li>
             <li class="list-group-item" routerLink="../agenda-general">Eventos Generales</li>
-            <li class="list-group-item">Eventos Personalizados</li>
+            <li class="list-group-item" routerLink="../agenda-personalizada">Eventos Personalizados</li>
             <li class="list-group-item active">Mi Perfil</li>
             <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
                 Salir
@@ -25,7 +25,7 @@
                 <a href="#" class="utility-bar__account">
                     <span class="utility-bar__account-avatar"></span>
                     <div class="row" *ngIf="AuthService.userState as user">
-                        <span class="utility-bar__account-name">{{user.displayName}}</span>
+                        <span class="utility-bar__account-name">{{user.email}}</span>
                         <!--Crear acceso al perfil-->
                     </div>
                 </a>
@@ -35,18 +35,19 @@
             <div class="row -spacing-a">
                 <div class="col-md-12">
                     <h1>MI PERFIL</h1>
+                    <button type="button" class="btn btn-primary" >Editar información <i class="far fa-edit"></i></button>
                 </div>
             </div>
             <div class="row -spacing-a">
                 <div class="col-md-4">
-                    <div class="profile-image">
-                        <img src="https://www.xing.com/image/0_c_3_3fce34b38_15444149_3/fabian-pecher-foto.1024x1024.jpg"
+                    <div class="profile-image" *ngIf="AuthService.userState as user">
+                        <img src= {{user.photoURL}}
                             class="fullwidth" />
                         <div class="edit-profile-image">
                             <span class="edit-profile-image__information">
                                 <span class="fa fa-camera"></span>
                                 <span class="edit-profile-image__label" *ngIf="AuthService.userState as user">
-                                    {{user.displayName}}
+                                    {{user.email}}
                                 </span>
                             </span>
                         </div>
@@ -65,17 +66,16 @@
                             <p class="-typo-copy">Empresa</p>
                             <p class="-typo-copy">Rol</p>
                             <p class="-typo-copy">Sexo</p>
-                            <button class="btn">
-                                <span class="btn__icon fa fa-pencil"></span>
-                                <span class="btn__label">Editar información</span>
-                            </button>
                         </div>
                         <div class="col-md-3">
-                            <p class="-typo-copy -typo-copy--blue">fpecher</p>
-                            <p class="-typo-copy -typo-copy--blue">Fabian</p>
-                            <p class="-typo-copy -typo-copy--blue">Pecher</p>
-                            <p class="-typo-copy -typo-copy--blue">01.01.1010</p>
-                            <p class="-typo-copy -typo-copy--blue">dummy@dummy.com</p>
+                            <p class="-typo-copy -typo-copy--blue"> </p>
+                            <p class="-typo-copy -typo-copy--blue" *ngIf="AuthService.userState as user"> {{user.email}}</p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue"></p>
                         </div>
                         
                     </div>

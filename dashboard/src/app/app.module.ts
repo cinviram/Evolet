@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AgendaGeneralComponent } from './components/agenda-general/agenda-general.component';
+import { AgendaPersonalizadaComponent } from './components/agenda-personalizada/agenda-personalizada.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 //Import de las rutas 
@@ -40,6 +41,7 @@ import { ModalCrearUserComponent } from './components/modal-crear-user/modal-cre
 import { ModalCrearEventoComponent } from './components/modal-crear-evento/modal-crear-evento.component';
 
 
+
 // Variable configuración - Firebase
 var config = {
   apiKey: "AIzaSyB_igUyMIQ1o9LKNq4IC8C2Kr8BwaHs7Rc",
@@ -63,6 +65,7 @@ var config = {
     ModalEventosInfoComponent,
     ModalCrearUserComponent,
     ModalCrearEventoComponent,
+    AgendaPersonalizadaComponent,
   ],
   imports: [
     FormsModule,
