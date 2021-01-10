@@ -37,7 +37,7 @@
             <div class="row -spacing-a">
                 <div class="col-md-4">
                     <div class="profile-image" *ngIf="AuthService.userState as user">
-                        <img src= {{user.photoURL}}
+                        <img src= {{usuarioActual.avatar}}
                             class="fullwidth" />
                         <div class="edit-profile-image">
                             <span class="edit-profile-image__information">
@@ -59,18 +59,18 @@
                             <p class="-typo-copy">Celular</p>
                             <p class="-typo-copy">Alias</p>
                             <p class="-typo-copy">Empresa</p>
-                            <p class="-typo-copy">Rol</p>
                             <p class="-typo-copy">Sexo</p>
+                            <p class="-typo-copy">Linkedin</p>
                         </div>
                         <div class="col-md-3">
-                            <p class="-typo-copy -typo-copy--blue"> </p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.nombre}} </p>
                             <p class="-typo-copy -typo-copy--blue" *ngIf="AuthService.userState as user"> {{user.email}}</p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
-                            <p class="-typo-copy -typo-copy--blue"></p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.fecha_nac}}</p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.telefono}}</p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.alias}}</p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.empresa}}</p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.sexo}}</p>
+                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.linkedin}}</p>
                         </div>
                     </div>
                 </div>

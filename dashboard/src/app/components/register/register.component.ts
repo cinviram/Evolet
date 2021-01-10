@@ -124,6 +124,7 @@ export class RegisterComponent implements OnInit {
           console.log('respuesta: ', result)
           if (result['exito']) {
             this.AuthService.SignUp(usuario.email, usuario.password).then(data => {
+
               Swal.fire(
                 'Exito',
                 'Usuario creado',

@@ -34,5 +34,9 @@ export class ApiUserService {
   crearAdmin(user){
     return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/crearUsuarioAdmin`,user); 
   }
+
+  obtenerAdministrador(email){
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerAdministrador/${email}`);
+  }
 }
 

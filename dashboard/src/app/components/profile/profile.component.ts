@@ -15,12 +15,22 @@ import Swal from 'sweetalert2'
 })
 export class ProfileComponent implements OnInit {
 
+  public usuarioActual={};
+
   constructor(
     public AuthService: AuthService,
     public ApiUserService: ApiUserService
   ) { }
 
   ngOnInit(): void {
+    let infoUser=localStorage.getItem('evolet-user');
+    let objectoUser=JSON.parse(infoUser);
+    this.usuarioActual=objectoUser;
+
+    console.log(this.usuarioActual)
+
   }
+
+  
 
 }
