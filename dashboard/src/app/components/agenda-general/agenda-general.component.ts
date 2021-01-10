@@ -81,7 +81,9 @@ export class AgendaGeneralComponent implements OnInit {
 
   crearEvento(event){
     //abrimos el modal 
-    this.bsModalRef= this.bsModalService.show(ModalCrearEventoComponent)
+    this.bsModalRef= this.bsModalService.show(ModalCrearEventoComponent,{
+      ignoreBackdropClick: true,
+      keyboard: false})
   }
   
 
