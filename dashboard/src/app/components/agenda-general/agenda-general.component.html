@@ -34,7 +34,17 @@
     </nav>
     <main class="content">
       <h1>Eventos Generales</h1>
-      <button class="btn" (click)="crearEvento($event)">Crear evento <i class="fa fa-plus"></i></button>
+      <div class="row">
+        
+        <div class="col-9">
+          <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar usuario" (keyup)='buscarEventoCoincidencia($event)'>
+        </div>
+        <div class="col-3">
+          <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
+          <button class="btn" (click)="crearEvento($event)">Crear evento <i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+      
       <!--Inicio de información current user-->
       <!--<div class="container mt-5" style="max-width: 600px">
         <div class="row" *ngIf="AuthService.userState as user">

@@ -67,16 +67,15 @@ export class ModalCrearEventoComponent implements OnInit {
     var instructor = objectInstructor.value
     var imagen= ''
     var inscripcion = objectInscripcion.value
-    var fechaCreacion=objectFechalimite.value
+    var fechaLimite=objectFechalimite.value
     
-    var fechaLimite = new Date() //objectFechalimite.value
     var enlace = objectEnlace.value
 
     //Evento nuevo
     let eventoNuevo = {'titulo': titulo, 'descripcion': descripcion, 'costo': costo, 
                       'instructor': instructor, 'inscripcion': inscripcion,'imagen': imagen,
                        'fechaCreacion': '',
-                      'fechaLimite': fechaCreacion, 'enlace': enlace }
+                      'fechaLimite': fechaLimite, 'enlace': enlace }
     return eventoNuevo
   }
 

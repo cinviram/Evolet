@@ -21,7 +21,7 @@ export class ApiEventoGeneralService {
   }
 
   actualizarEvento(evento){
-    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/actualizarEventoGeneral`,evento); 
+    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEventoGeneral`,evento); 
   }
 
   crearEvento(evento){

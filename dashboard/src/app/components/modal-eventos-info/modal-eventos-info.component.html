@@ -7,21 +7,72 @@
     </button>
 </div>
 <div class="modal-body"> 
-<p>Título:</p>
-<input id="titulo" [disabled]='statusInput' placeholder="Titulo" [ngModel]="eventoActual.titulo">
-<p>Descripción: </p>
-<input id="descripcion" [disabled]='statusInput' placeholder="Descripcion" [ngModel]="eventoActual.descripcion">
-<p>Costo: </p>
-<input id="costo" [disabled]='statusInput' placeholder="Costo" [ngModel]="eventoActual.costo"> 
-<p>Instructor: </p>
-<input id="instructor" [disabled]='statusInput' placeholder="Instructor" [ngModel]="eventoActual.nombreInstructor">
-<p>Inscripción: </p>
-<input id="inscripcion" [disabled]='statusInput' placeholder="Inscripcion" [ngModel]="eventoActual.inscripcion">
-<p>Fecha límite: </p>
-<input id="fecha" [disabled]='statusInput' placeholder="Fecha limite" [ngModel]="eventoActual.fechaLimite2[0]">
-<p>Enlace de Facebook: </p>
-<input id="enlace" [disabled]='statusInput' placeholder="Enlace Facebook" [ngModel]="eventoActual.enlace_facebook">
-<button class="btn btn-delete" (click)='EditarEvento($event)'>{{name_button_edit}}</button>
+
+<!-- <p>Instructor: </p>
+<input id="instructor" [disabled]='statusInput' placeholder="Instructor" [ngModel]="eventoActual.nombreInstructor"> -->
+
+
+
+<div class="container">
+    <div class="mt-3">
+        <div class="form-group row">
+            <label for="inputTitulo" class="col-sm-3 col-form-label">Título (*)</label>
+            <div class="col-sm-7">
+              <input id="titulo" [disabled]='statusInput' [ngModel]="eventoActual.titulo" class="form-control" placeholder="Nombre del evento">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputImagen" class="col-sm-3 col-form-label">Imagen del evento</label>
+            <div class="col-sm-7">
+                <div class="custom-file">
+                    <input type="file" (change)="readUrl($event)" class="custom-file-input" accept="image/jpeg, image/png" id="inputImagen" lang="es">
+                    <label class="custom-file-label" for="customFileLang">Subir Imagen del evento</label>
+                </div>
+            </div>
+            <img *ngIf="url" [src]="url" alt="..." class="img-thumbnail">
+            
+        </div>
+        <div class="form-group row">
+          <label for="inputDescripcion" class="col-sm-3 col-form-label">Descripción (*)</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" id="descripcion" [disabled]='statusInput' [ngModel]="eventoActual.descripcion">
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputCosto" class="col-sm-3 col-form-label">Costo (*)</label>
+            <div class="col-sm-7">
+              <input type="number" min="0.00" class="form-control" id="costo" [disabled]='statusInput' [ngModel]="eventoActual.costo" placeholder="Costo del evento">
+            </div>
+          </div>
+        <div class="form-group row">
+            <label for="inputCelular" class="col-sm-3 col-form-label">Instructor (*)</label>
+            <div class="col-sm-7">
+                <select class="custom-select mr-sm-2" id="selectInstructor">
+                    <option *ngFor='let element of lista_instructores' value="{{element.idInstructor}}">
+                        {{element.nombre}}
+                    </option>
+                </select>
+              </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-3 col-form-label">Formulario de inscripción (*)</label>
+            <div class="col-sm-7">
+                <input type="url" class="form-control" id="inputInscripcion" id="inscripcion" [disabled]='statusInput' placeholder="Inscripcion" [ngModel]="eventoActual.inscripcion">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputFechaLimite" class="col-sm-3 col-form-label">Fecha de límite</label>
+            <div class="col-sm-7">
+              <input type="datetime-local" class="form-control" id="fecha" [disabled]='statusInput' placeholder="Fecha limite" [ngModel]="eventoActual.fechaLimiteFormat">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEnlace" class="col-sm-3 col-form-label">Enlace a Facebook</label>
+            <div class="col-sm-7">
+                <input type="url" class="form-control" id="enlace" [disabled]='statusInput' placeholder="Enlace Facebook" [ngModel]="eventoActual.enlace_facebook">
+            </div>
+        </div>
+       
+    </div>
+    <button id="btn_editar" class="btn btn-delete" (click)='EditarEvento($event)'>{{name_button_edit}}</button>
 </div>
-
-

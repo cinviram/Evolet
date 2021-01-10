@@ -22,6 +22,7 @@ export class AgendaGeneralComponent implements OnInit {
 
   //Variable global
   eventos: any = []
+  eventosRespaldo:any=[]
 
   //referencia del modal
   bsModalRef: BsModalRef
@@ -38,6 +39,7 @@ export class AgendaGeneralComponent implements OnInit {
   ngOnInit(): void {
     this.ApiEventoGeneralService.obtenerEventos().subscribe(data => {
       //Asignacion a variable global (eventos)
+      this.eventosRespaldo=data;
       this.eventos = data;
 
       for(let indice in data){
@@ -79,6 +81,27 @@ export class AgendaGeneralComponent implements OnInit {
     }
   }
 
+  buscarEventoCoincidencia(event){
+    let palabra=event.target.value;
+    console.log(palabra)
+
+    let palabraMinus=palabra.toLowerCase();
+    let coincidencias=[]
+
+    for(let indice in this.eventosRespaldo){
+      let elemento=this.eventosRespaldo[indice];
+      let nombre=elemento.titulo;
+      let nombreMinus=nombre.toLowerCase();
+
+      if(nombreMinus.indexOf(palabraMinus)!=-1){
+        coincidencias.push(elemento)
+      }
+
+    }
+
+    this.eventos=coincidencias
+  }
+
   crearEvento(event){
     //abrimos el modal 
     this.bsModalRef= this.bsModalService.show(ModalCrearEventoComponent,{
@@ -86,7 +109,6 @@ export class AgendaGeneralComponent implements OnInit {
       keyboard: false})
   }
   
-
   //Enviar variable al modal
   verDetalle(event){
     console.log(event.target.id)
@@ -98,7 +120,8 @@ export class AgendaGeneralComponent implements OnInit {
         eventoEncontrado
       ]
   };
-    this.bsModalRef= this.bsModalService.show(ModalEventosInfoComponent,{initialState})
+    this.bsModalRef= this.bsModalService.show(ModalEventosInfoComponent,{initialState,ignoreBackdropClick: true,
+      keyboard: false})
 
   }
 

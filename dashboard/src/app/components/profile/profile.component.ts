@@ -15,7 +15,7 @@ import Swal from 'sweetalert2'
 })
 export class ProfileComponent implements OnInit {
 
-  public usuarioActual={};
+  public usuarioActual:any;
 
   constructor(
     public AuthService: AuthService,
