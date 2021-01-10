@@ -65,6 +65,7 @@ label{
 
 input[type="text"],
 input[type="password"],
+input[type="url"],
 select{
   display: block;
   box-sizing: border-box;
@@ -82,6 +83,7 @@ select{
 
 input[type="text"]:focus,
 input[type="password"]:focus ,
+input[type="url"]:focus ,
 select{
   border-bottom: 2px solid #16a085;
   color: #16a085;
@@ -197,4 +199,12 @@ button.social-signin.google {
 .ajusteTam{
   width: 100px;
   height: 100px;
+}
+
+.btn {
+  padding: 10px;
+  margin: 0 5px;
+  border: 0;
+  color: white;
+  background-color: #00A8E8;
 }

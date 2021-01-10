@@ -30,5 +30,9 @@ export class ApiUserService {
   eliminarUsuario(id){
     return this.http.delete('https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/eliminarUsuario/'+id); 
   }
+
+  crearAdmin(user){
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/crearUsuarioAdmin`,user); 
+  }
 }
 

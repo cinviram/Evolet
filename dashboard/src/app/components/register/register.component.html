@@ -6,24 +6,27 @@
   <div class="left">
     <h1>Formulario de Registro</h1>
 
-    <input type="text" name="name" placeholder="Nombres" />
-    <input type="text" name="username" placeholder="Alias" />
-    <div class="formGroup">
+    <input type="text" id="name" name="name" placeholder="Nombres" />
+    <input type="text" id="username" name="username" placeholder="Alias" />
+    <input type="text" id="email" name="email" placeholder="Email Address" #userEmail required/>
+    <input type="text" id="password" name="password" placeholder="Password" #userPwd required/>
+    <!-- <div class="formGroup">
       <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-    </div>
-    <div class="formGroup">
+    </div> -->
+    <!-- <div class="formGroup">
       <input type="password" class="formControl" placeholder="Password" #userPwd required>
-    </div>
-    <input type="text" name="telefono" placeholder="Teléfono" />
-    <input type="text" name="empresa" placeholder="Empresa" />
+    </div> -->
+    <input type="text" id="telefono" name="telefono" placeholder="Teléfono" />
+    <input type="text" id="empresa" name="empresa" placeholder="Empresa" />
+    <input type="url" id="linkedin" name="empresa" placeholder="Linkedin" />
     <p>Sexo:
-      <select name="sexo">
+      <select id="sexo" name="sexo">
         <option>Masculino</option>
         <option>Femenino</option>
       </select>
     </p>
     <label for="start">Fecha de nacimiento:</label>
-    <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
+    <input type="date" id="fec_nac" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
     <label for="inputPerfil" class="col-sm-3 col-form-label">Avatar</label>
     <div class="form-group row">
       <div class="col-sm-7">
@@ -36,9 +39,7 @@
 
       <img *ngIf="url" class="ajusteTam" [src]="url">
     </div>
-    <div class="formGroup">
-      <input type="button" class="btn btnPrimary" value="Registrar" (click)="AuthService.SignUp(userEmail.value, userPwd.value)">
-    </div>
+    <input type="submit" (click)="crearAdministrador(userEmail.value, userPwd.value)" class="fadeIn fourth" value="Registrar">
   </div>
 
   <div class="right">

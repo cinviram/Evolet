@@ -44,7 +44,6 @@ export class ModalCrearEventoComponent implements OnInit {
 
     //validar primero
     this.cambiarTextoButton();
-
     let eventoNuevo = this.obtenerEventoNuevo();
     console.log(eventoNuevo)
 
