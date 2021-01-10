@@ -166,6 +166,7 @@ export class ModalCrearUserComponent implements OnInit {
           if(data['exito']){
             this.restaurarTextoButton();
             this.alertaExito();
+            
           }
         })
         
@@ -284,6 +285,7 @@ export class ModalCrearUserComponent implements OnInit {
 
   cerrarModal(){
     this.bsModalRef.hide();
+    location.reload();
   }
 
   alertaExito(){

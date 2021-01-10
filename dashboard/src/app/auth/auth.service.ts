@@ -10,15 +10,10 @@ import { Router } from "@angular/router";
 //Model admin - Datos de comunicación con el servidor
 export interface User {
   uid: string;
-  nombres: string;
   email: string;
-  alias: string;
-  avatar: string;
-  celular: string;
-  empresa: string;
-  fecha_nac: string;
-  rol: string;
-  sexo: string;
+  displayName: string;
+  photoURL: string;
+  emailVerified: boolean;
 }
 
 @Injectable({
@@ -60,16 +55,19 @@ export class AuthService {
   }
 
 
-  //Registro de Usuario
+  // Sign up with email/password
   SignUp(email, password) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign 
+        up and returns promise */
         this.SendVerificationMail();
         this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
       })
   }
+
 
   SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u.sendEmailVerification())
@@ -110,25 +108,23 @@ export class AuthService {
       })
   }
 
+  /* Setting up user data when sign in with username/password, 
+  sign up with username/password and sign in with social auth  
+  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userState: User = {
+    const userData: User = {
       uid: user.uid,
       email: user.email,
-      nombres: user.nombres,
-      alias: user.alias,
-      avatar: user.avatar,
-      celular: user.celular,
-      empresa: user.empresa,
-      fecha_nac: user.fecha_nac,
-      rol: user.rol,
-      sexo: user.sexo,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified
     }
-
-    return userRef.set(userState, {
+    return userRef.set(userData, {
       merge: true
     })
   }
+
 
   SignOut() {
     return this.afAuth.signOut().then(() => {

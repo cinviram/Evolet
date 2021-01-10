@@ -1,27 +1,21 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
 <div id="login-box">
   <div class="left">
     <h1>Formulario de Registro</h1>
 
-    <input type="text" name="username" placeholder="Nombres" />
+    <input type="text" name="name" placeholder="Nombres" />
     <input type="text" name="username" placeholder="Alias" />
-    <input type="text" name="email" placeholder="Correo" />
-    <input type="password" name="password" placeholder="Contraseña" />
-    <input type="password" name="password2" placeholder="Confirmación de contraseña" />
-    <input type="password" name="telefono" placeholder="Teléfono" />
-    <p>Rol:
-      <select name="rol">
-        <option>entrenador</option>
-        <option>gerente</option>
-      </select>
-    </p>
-    <p>Empresa:
-      <select name="empresa">
-        <option>Evolet S.A.</option>
-        <option>ESPOL</option>
-        <option>Corporación El Rosado</option>
-        <option>Cervecería Nacional</option>
-      </select>
-    </p>
+    <div class="formGroup">
+      <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+    </div>
+    <div class="formGroup">
+      <input type="password" class="formControl" placeholder="Password" #userPwd required>
+    </div>
+    <input type="text" name="telefono" placeholder="Teléfono" />
+    <input type="text" name="empresa" placeholder="Empresa" />
     <p>Sexo:
       <select name="sexo">
         <option>Masculino</option>
@@ -30,21 +24,29 @@
     </p>
     <label for="start">Fecha de nacimiento:</label>
     <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
-    <label for="start">Avatar:</label>
-    <form enctype="multipart/form-data" action="uploader.php" method="POST">
-      <input name="uploadedfile" type="file" />
-      <input type="submit" value="Subir archivo"/>
-    </form>
+    <label for="inputPerfil" class="col-sm-3 col-form-label">Avatar</label>
+    <div class="form-group row">
+      <div class="col-sm-7">
+        <div class="custom-file">
+          <input type="file" (change)="readUrl($event)" class="custom-file-input" accept="image/jpeg, image/png"
+            id="imgPerfil" lang="es">
+          <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+        </div>
+      </div>
 
-    <input class="register" type="submit" name="signup_submit" value="Registrar" />
+      <img *ngIf="url" class="ajusteTam" [src]="url">
+    </div>
+    <div class="formGroup">
+      <input type="button" class="btn btnPrimary" value="Registrar" (click)="AuthService.SignUp(userEmail.value, userPwd.value)">
+    </div>
   </div>
 
   <div class="right">
     <span class="loginwith">Sign in with<br />social network</span>
 
     <!--<button class="social-signin facebook">Log in with facebook</button>-->
-    <button class="social-signin twitter">Ingresa con Twitter</button>
-    <button class="social-signin google" (click)="AuthService.GoogleAuth()">Ingresa con Google+</button>
+    <button class="social-signin google" (click)="AuthService.GoogleAuth()"> <i class="fab fa-google-plus-g"></i>
+      Ingresa con Google</button>
   </div>
   <!--<div class="or">O</div>-->
 </div>

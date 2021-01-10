@@ -1,24 +1,20 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-
 <div class="app-container">
-
     <nav class="nav">
-
         <a href="#" class="nav__logo">
         </a>
         <ul class="list-group">
-            <li class="list-group-item" routerLink="../dashboard">Usuarios</li>
-            <li class="list-group-item" routerLink="../agenda-general">Eventos Generales</li>
-            <li class="list-group-item" routerLink="../agenda-personalizada">Eventos Personalizados</li>
-            <li class="list-group-item active">Mi Perfil</li>
+            <li class="list-group-item" routerLink="../dashboard"><i class="fa fa-users"></i> Usuarios</li>
+            <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Eventos Generales</li>
+            <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i> Eventos Personalizados</li>
+            <li class="list-group-item active"><i class="fas fa-user-circle"></i> Mi Perfil</li>
             <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
-                Salir
+                <i class="fas fa-sign-out-alt"></i> Salir
             </button>
         </ul>
     </nav>
-
     <div class="app-view">
         <nav class="utility-bar">
             <div class="utility-bar__inner">
@@ -52,7 +48,6 @@
                             </span>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-md-8">
                     <h5>Información personal</h5>
@@ -77,7 +72,6 @@
                             <p class="-typo-copy -typo-copy--blue"></p>
                             <p class="-typo-copy -typo-copy--blue"></p>
                         </div>
-                        
                     </div>
                 </div>
             </div>
