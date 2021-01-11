@@ -13,7 +13,7 @@ export class ApiEventoGeneralService {
   }
 
   obtenerInstructores(){
-    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/us-central1/app/api/eventos/obtenerInstructores`); 
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/obtenerInstructores`); 
   }
 
   eliminarEvento(id){
