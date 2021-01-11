@@ -41,6 +41,7 @@ import { ModalCrearUserComponent } from './components/modal-crear-user/modal-cre
 import { ModalCrearEventoComponent } from './components/modal-crear-evento/modal-crear-evento.component';
 import { ModalPersonalizadosInfoComponent } from './components/modal-personalizados-info/modal-personalizados-info.component';
 import { ModalPersonalizadosAsignComponent } from './components/modal-personalizados-asign/modal-personalizados-asign.component';
+import { ModalPersonalizadosCrearComponent } from './components/modal-personalizados-crear/modal-personalizados-crear.component';
 
 
 
@@ -70,6 +71,7 @@ var config = {
     AgendaPersonalizadaComponent,
     ModalPersonalizadosInfoComponent,
     ModalPersonalizadosAsignComponent,
+    ModalPersonalizadosCrearComponent,
   ],
   imports: [
     FormsModule,

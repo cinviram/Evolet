@@ -35,6 +35,54 @@
         </nav>
         <main class="content">
             <h1>Eventos Personalizados</h1>
+            <div class="row">
+                <div class="col-3">
+                    <select id="tipo_user" class="form-control" (change)="filtrarCategoria($event)">
+                      <option value="todos" selected>Todos</option>
+                      <option *ngFor='let categoria of categoriasUnicas' value="{{categoria}}">{{categoria}}</option>
+                      
+                    </select>
+                  </div>
+        
+                <div class="col-6">
+                  <input type="text" class="form-control" (keyup)='buscarEventoCoincidencia($event)' placeholder="Buscar evento personalizado" >
+                  
+                </div>
+                <div class="col-3">
+                  <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
+                  <button (click)="crearEvento($event)" class="btn" >Crear evento<i class="fa fa-plus"></i></button>
+                  
+                </div> 
+              </div>
+
+              <!-- Tabla de datos -->
+              <table>
+                <thead>
+                  <tr>
+                    <th>Titulo</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Categoría</th>
+                  </tr>
+                </thead>
+                <tbody> 
+                  <tr *ngFor='let evento of eventosData'>
+                    <td>
+                      {{evento.titulo}}
+                    </td>
+                    <td>{{evento.fechaLimite2[0]}}</td>
+                    <td>{{evento.fechaLimite2[1]}}</td>
+                    <td>{{evento.categoria}}</td>
+                    
+                    <td>
+                      
+                      <button id='{{evento.idEvento}}' (click)="verDetalle($event)" class="btn">Asignar<i class="fa fa-info-circle"></i></button>
+                      <button id='{{evento.idEvento}}' (click)="verDetalle($event)" class="btn">Ver más<i class="fa fa-info-circle"></i></button>
+                      <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar <i class='fas fa-trash-alt'></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
         </main>
     </div>
 </div>
