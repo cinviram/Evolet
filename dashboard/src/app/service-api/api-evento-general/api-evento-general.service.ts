@@ -13,7 +13,7 @@ export class ApiEventoGeneralService {
   }
 
   obtenerInstructores(){
-    return this.http.get(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/obtenerInstructores`); 
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/us-central1/app/api/eventos/obtenerInstructores`); 
   }
 
   eliminarEvento(id){
@@ -21,10 +21,10 @@ export class ApiEventoGeneralService {
   }
 
   actualizarEvento(evento){
-    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEventoGeneral`,evento); 
+    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/actualizarEventoGeneral`,evento); 
   }
 
   crearEvento(evento){
-    return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarEventoGeneral`,evento); 
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.netapp/api/eventos/registrarEventoGeneral`,evento); 
   }
 }
