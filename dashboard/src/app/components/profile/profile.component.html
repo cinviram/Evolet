@@ -7,8 +7,10 @@
         </a>
         <ul class="list-group">
             <li class="list-group-item" routerLink="../dashboard"><i class="fa fa-users"></i> Usuarios</li>
-            <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Agenda General</li>
-            <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i> Agenda Personalizada</li>
+            <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Agenda
+                General</li>
+            <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i> Agenda
+                Personalizada</li>
             <li class="list-group-item active"><i class="fas fa-user-circle"></i> Mi Perfil</li>
             <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
                 <i class="fas fa-sign-out-alt"></i> Salir
@@ -31,14 +33,14 @@
             <div class="row -spacing-a">
                 <div class="col-md-12">
                     <h1>MI PERFIL</h1>
-                    <button type="button" class="btn btn-primary" >Editar información <i class="far fa-edit"></i></button>
+                    <button type="button" id=btn_editar class="btn btn-primary"
+                        (click)='EditarAdministrador($event)'>{{name_button_edit}}</button>
                 </div>
             </div>
             <div class="row -spacing-a">
                 <div class="col-md-4">
                     <div class="profile-image" *ngIf="AuthService.userState as user">
-                        <img src= {{usuarioActual.avatar}}
-                            class="fullwidth" />
+                        <img src={{usuarioActual.avatar}} class="fullwidth" />
                         <div class="edit-profile-image">
                             <span class="edit-profile-image__information">
                                 <span class="fa fa-camera"></span>
@@ -62,15 +64,42 @@
                             <p class="-typo-copy">Sexo</p>
                             <p class="-typo-copy">Linkedin</p>
                         </div>
-                        <div class="col-md-3">
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.nombre}} </p>
-                            <p class="-typo-copy -typo-copy--blue" *ngIf="AuthService.userState as user"> {{user.email}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.fecha_nac}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.telefono}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.alias}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.empresa}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.sexo}}</p>
-                            <p class="-typo-copy -typo-copy--blue">{{usuarioActual.linkedin}}</p>
+                        <div class="col-md-9">
+                            <div class="col-sm-5">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="nombres"
+                                    placeholder="Nombres completos" [ngModel]="usuarioActual.nombre">
+                        
+                            </div>
+                            <div class="col-sm-5s">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="correo"
+                                    placeholder="Nombres completos" [ngModel]="usuarioActual.email">
+                            </div>
+                            <div class="col-sm-7">
+                                <input [disabled]='statusInput' type="date" class="form-control" id="fec_nac"
+                                    [ngModel]="usuarioActual.fecha_nac">
+                            </div>
+                            <div class="col-sm-50">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="telefono"
+                                    placeholder="Telefono" [ngModel]="usuarioActual.telefono">
+                            </div>
+                            <div class="col-sm-50">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="alias"
+                                    placeholder="Alias" [ngModel]="usuarioActual.alias">
+                            </div>
+                            <div class="col-sm-7">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="empresa"
+                                    [ngModel]="usuarioActual.empresa">
+                            </div>
+                            <div class="col-sm-7">
+                                <select class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
+                                    <option selected value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-20">
+                                <input [disabled]='statusInput' type="text" class="form-control" id="linkedin"
+                                    [ngModel]="usuarioActual.linkedin">
+                            </div>
                         </div>
                     </div>
                 </div>

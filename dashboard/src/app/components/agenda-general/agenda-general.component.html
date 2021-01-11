@@ -14,7 +14,7 @@
       <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i> Agenda Personalizada</li>
       <li class="list-group-item" routerLink="../profile"><i class="fas fa-user-circle"></i> Mi Perfil</li>
       <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
-        Salir
+        <i class="fas fa-sign-out-alt"></i> Salir
       </button>
     </ul>
   </nav>
@@ -37,7 +37,7 @@
       <div class="row">
         
         <div class="col-9">
-          <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar usuario" (keyup)='buscarEventoCoincidencia($event)'>
+          <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar evento" (keyup)='buscarEventoCoincidencia($event)'>
         </div>
         <div class="col-3">
           <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->

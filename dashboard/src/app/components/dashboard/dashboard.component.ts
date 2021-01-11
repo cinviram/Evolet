@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
   abrirModalUser(){
     console.log('click')
     //abrimos el modal de crear usuario
-    this.bsModalRef= this.bsModalService.show(ModalCrearUserComponent)
+    this.bsModalRef= this.bsModalService.show(ModalCrearUserComponent,{ignoreBackdropClick: true,})
   }
 
   //Enviar variable al modal
@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
           usuarioEncontrado
       ]
   };
-    this.bsModalRef= this.bsModalService.show(ModalUserInfoComponent,{initialState})
+    this.bsModalRef= this.bsModalService.show(ModalUserInfoComponent,{initialState,ignoreBackdropClick: true,})
 
   }
 
