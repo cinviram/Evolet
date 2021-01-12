@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
       list: [
           usuarioEncontrado
       ]
-  };
+    };
     this.bsModalRef= this.bsModalService.show(ModalUserInfoComponent,{initialState,ignoreBackdropClick: true,})
 
   }

@@ -27,4 +27,5 @@ export class ApiEventoGeneralService {
   crearEvento(evento){
     return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/registrarEventoGeneral`,evento); 
   }
+
 }

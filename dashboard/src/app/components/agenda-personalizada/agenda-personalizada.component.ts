@@ -97,8 +97,13 @@ export class AgendaPersonalizadaComponent implements OnInit {
   }
 
   crearEvento(event){
+    const initialState:any = {
+      list: [
+        this.categoriasUnicas
+      ]
+    };
     //abrimos el modal 
-    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosCrearComponent,{
+    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosCrearComponent,{initialState,
       ignoreBackdropClick: true,
       keyboard: false})
   }
