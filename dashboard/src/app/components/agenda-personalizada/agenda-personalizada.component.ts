@@ -4,10 +4,12 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import {EventosPersonalizazdosService} from '../../service-api/eventos-personalizados/eventos-personalizazdos.service'
 import {ModalPersonalizadosCrearComponent} from '../../components/modal-personalizados-crear/modal-personalizados-crear.component'
+import {ModalPersonalizadosAsignComponent} from '../modal-personalizados-asign/modal-personalizados-asign.component'
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
 
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
+import { ModalPersonalizadosInfoComponent } from '../modal-personalizados-info/modal-personalizados-info.component';
 
 @Component({
   selector: 'app-agenda-personalizada',
@@ -104,6 +106,15 @@ export class AgendaPersonalizadaComponent implements OnInit {
     };
     //abrimos el modal 
     this.bsModalRef= this.bsModalService.show(ModalPersonalizadosCrearComponent,{initialState,
+      ignoreBackdropClick: true,
+      keyboard: false})
+  }
+
+  //asignar usuarios a eventos modal
+  asignarUsuarioEvento(event){
+    
+    //abrimos el modal 
+    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosAsignComponent,{
       ignoreBackdropClick: true,
       keyboard: false})
   }
