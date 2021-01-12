@@ -112,11 +112,30 @@ export class AgendaPersonalizadaComponent implements OnInit {
 
   //asignar usuarios a eventos modal
   asignarUsuarioEvento(event){
-    
+    let idEvento=event.target.id;
+    console.log(idEvento)
+
+    let eventoSeleccionado=this.buscarEvento(idEvento);
+    console.log(eventoSeleccionado)
+    const initialState:any = {
+      eventoActual: [
+        eventoSeleccionado
+      ]
+    }
     //abrimos el modal 
-    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosAsignComponent,{
+    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosAsignComponent,{initialState,
       ignoreBackdropClick: true,
       keyboard: false})
+  }
+
+  //buscar evento
+  buscarEvento(id){
+    for(let indice in this.eventosRespaldo){
+      let evento=this.eventosRespaldo[indice];
+      if(evento.idEvento==id){
+        return evento;
+      }
+    }
   }
 
   formatearFecha(date) {

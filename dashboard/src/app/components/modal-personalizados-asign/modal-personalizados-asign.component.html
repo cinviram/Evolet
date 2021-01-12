@@ -11,7 +11,7 @@
         <div class="form-group row">
             <label for="inputTitulo" class="col-sm-3 col-form-label">Título</label>
             <div class="col-sm-7">
-              <input disabled id="titulo" class="form-control" placeholder="Titulo del evento">
+              <input disabled id="titulo" value='{{eventoActual[0].titulo}}' class="form-control" placeholder="Titulo del evento">
             </div>
         </div>
     </div>
@@ -19,43 +19,40 @@
         <div class="form-group row">
             <label for="inputTitulo" class="col-sm-3 col-form-label">Buscar usuario</label>
             <div class="col-sm-7">
-              <input id="usuario" class="form-control" placeholder="Ingrese nombre a buscar">
+              <input (keyup)='buscarUsuarioCoincidencia($event)' id="usuario" class="form-control" placeholder="Ingrese nombre a buscar">
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-7">
+            <div>
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col-2">#</th>
+                        <th scope="col-6">Nombres</th>
+                        <th scope="col-2">Tipo</th>
+                        <th scope="col-2">Empresa</th>
+                        <th scope="col-1">Elegir</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                      <tr *ngFor='let usuario of listadoUsuarios; index as i'>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{usuario.nombres}}</td>
+                        <td>{{usuario.tipoUsuario}}</td>
+                        <td>{{usuario.empresa}}</td>
+                        <td>
+                            <input (change)='verificarAsignacion($event)' type="checkbox" class="form-check-input ml-3" id="{{usuario.idUser}}">
+                        </td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
             </div>
         </div>
     </div>
+    <!-- (click)='EditarEvento($event)' -->
+    <!-- {{name_button_edit}} -->
+    <button (click)='asignarUsuariosEvento()' id="btn_asignar" class="btn btn-primary">Asignar</button>
     
 </div>
