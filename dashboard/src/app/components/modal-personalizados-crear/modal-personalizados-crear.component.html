@@ -1,3 +1,4 @@
+
 <div class="modal-header">
     <h4 class="modal-title">Creación de evento personalizado
     </h4>
@@ -12,13 +13,13 @@
         <div class="form-group row">
             <label for="inputTitulo" class="col-sm-3 col-form-label">Título (*)</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputTitulo" placeholder="Nombre del evento">
+                <input type="text" class="form-control" id="inputTitulo" placeholder="Nombre del evento">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputDescripcion" class="col-sm-3 col-form-label">Descripción (*)</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción del evento">
+                <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción del evento">
             </div>
         </div>
         <div class="form-group row">
@@ -32,18 +33,18 @@
                     </option>
                     <option value='nuevaCat'>Nueva Categoría</option>
                 </select>
-              </div>
+                </div>
         </div>
         <div *ngIf='banderaSelector' class="form-group row">
             <label for="inputNuevaCat" class="col-sm-3 col-form-label">Nueva Categoría</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputNuevaCat" placeholder="Escriba la nueva categoria">
+                <input type="text" class="form-control" id="inputNuevaCat" placeholder="Escriba la nueva categoria">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEnlace" class="col-sm-3 col-form-label">Enlace (*)</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputEnlace" placeholder="Enlace al evento">
+                <input type="text" class="form-control" id="inputEnlace" placeholder="Enlace al evento">
             </div>
         </div>
         <div class="form-group row">
@@ -59,10 +60,11 @@
         <div class="form-group row">
             <label for="inputFechaLimite" class="col-sm-3 col-form-label">Fecha de límite</label>
             <div class="col-sm-7">
-              <input type="datetime-local" class="form-control" id="inputFechaLimite">
+                <input type="datetime-local" class="form-control" id="inputFechaLimite">
             </div>
         </div>
         <button id="btn_crear" type="button" class="btn btn-primary" (click)='crearEvento()'>Crear Evento</button>
         
         
     </form>
+</div>

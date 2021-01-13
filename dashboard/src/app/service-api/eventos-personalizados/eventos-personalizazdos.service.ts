@@ -12,6 +12,10 @@ export class EventosPersonalizazdosService {
     return this.http.get(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/obtenerEventosAgenda`); 
   }
 
+  obtenerinfoUser(idUsers){
+    return this.http.get(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/obtenerDataUserId/${idUsers}`); 
+  }
+
   crearEventoAgenda(evento){
     return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarEventosAgenda`,evento); 
   }
@@ -19,4 +23,6 @@ export class EventosPersonalizazdosService {
   asignarUsuariosEvento(asignacion){
     return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarAsignacionAgenda`,asignacion); 
   }
+
+  
 } 

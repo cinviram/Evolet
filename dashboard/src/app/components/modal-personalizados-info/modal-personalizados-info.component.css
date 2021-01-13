@@ -1,0 +1,19 @@
+::ng-deep .md-class{
+    max-width: 50rem !important;
+    width: 50rem ;
+}
+
+
+.encabezado{
+    font-size: larger;
+}
+
+#col_izquierda{
+    margin: 0;
+    padding: 0px;
+}
+
+#col_derecha{
+    margin: 0;
+    padding: 0px;
+}

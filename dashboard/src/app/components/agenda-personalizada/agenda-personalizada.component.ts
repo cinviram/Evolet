@@ -3,13 +3,14 @@ import { NgForm } from '@angular/forms';
 //Import - servicio
 import { AuthService } from '../../auth/auth.service';
 import {EventosPersonalizazdosService} from '../../service-api/eventos-personalizados/eventos-personalizazdos.service'
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
+
 import {ModalPersonalizadosCrearComponent} from '../../components/modal-personalizados-crear/modal-personalizados-crear.component'
 import {ModalPersonalizadosAsignComponent} from '../modal-personalizados-asign/modal-personalizados-asign.component'
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
+import { ModalPersonalizadosInfoComponent } from '../modal-personalizados-info/modal-personalizados-info.component';
 
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
-import { ModalPersonalizadosInfoComponent } from '../modal-personalizados-info/modal-personalizados-info.component';
 
 @Component({
   selector: 'app-agenda-personalizada',
@@ -101,7 +102,7 @@ export class AgendaPersonalizadaComponent implements OnInit {
   crearEvento(event){
     const initialState:any = {
       list: [
-        this.categoriasUnicas
+        this.categoriasUnicas,this.categoriasUnicas
       ]
     };
     //abrimos el modal 
@@ -127,6 +128,26 @@ export class AgendaPersonalizadaComponent implements OnInit {
       ignoreBackdropClick: true,
       keyboard: false})
   }
+
+  verDetalleEvento(event){
+    let idEvento=event.target.id;
+    
+    //buscando evento asociado
+    let evento=this.buscarEvento(idEvento);
+    console.log(evento)
+
+    const initialState:any = {
+      list: [
+        evento,this.categoriasUnicas
+      ]
+    };
+    //abrimos el modal 
+    
+    this.bsModalRef= this.bsModalService.show(ModalPersonalizadosInfoComponent,{initialState,
+      ignoreBackdropClick: true,
+      keyboard: false, class: 'md-class'})
+  }
+  
 
   //buscar evento
   buscarEvento(id){
