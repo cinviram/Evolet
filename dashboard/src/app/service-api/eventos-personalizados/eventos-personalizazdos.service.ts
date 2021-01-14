@@ -24,5 +24,9 @@ export class EventosPersonalizazdosService {
     return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarAsignacionAgenda`,asignacion); 
   }
 
+  actualizarEvento(dataEvento){ //envio el evento y el id
+    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEventoAgenda`,dataEvento); 
+  }
+
   
 } 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import Swal from 'sweetalert2';
 
 import {ApiEventoGeneralService} from '../../service-api/api-evento-general/api-evento-general.service'
 import { EventosPersonalizazdosService} from '../../service-api/eventos-personalizados/eventos-personalizazdos.service'
@@ -15,6 +16,7 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
   lista_instructores:Object[]=[] //listado de instructores
   lista_usuarios:Object[]=[];
   statusDisabled=true
+  nombreBtnEditar='Editar'
 
   constructor(public bsModalRef: BsModalRef,public ApiEventoGeneralService: ApiEventoGeneralService,
               public eventCustomSrv: EventosPersonalizazdosService) { }
@@ -38,6 +40,7 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
     })
 
     //obtengo los usuarios asociados a el evento actual
+    console.log('id user asignados: ',this.list[0].usuarios)
     this.eventCustomSrv.obtenerinfoUser(JSON.stringify(this.list[0].usuarios)).subscribe(data=>{
       console.log(data)
       this.lista_usuarios=<any>data;
@@ -48,12 +51,9 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
   cambiarSelectCategoria(){
     
     setTimeout(()=>{
-      console.log('hola2')
       for(let indice in this.list[1]){
         let categoria=this.list[1][indice];
-        console.log(categoria)
         if(categoria==this.list[0].categoria){
-          console.log('indice: ',indice)
           let selector:any=document.getElementById("selectCategoria")
           selector.selectedIndex = indice;
         }
@@ -81,6 +81,59 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
     //asigno al campo el nombre del instructor actualmente asignado
     
 
+  }
+
+  actualizarEvento(event){
+    
+
+    if(this.statusDisabled){ //si es true, entonces tiene disabled
+      this.statusDisabled=false;
+      this.nombreBtnEditar='Actualizar'; 
+    
+    }else{// ya tiene tiene actualizar y vamos a guardar en base la data actualizada
+      this.cambiarTextoButton(); //deshabilitando el button y cambiando el texto
+      //obteniendo el evento nuevo
+      let dataUpdateEvento=this.obtenerEventoActualizado();
+      console.log('evento actualizado: ',dataUpdateEvento)
+      let data={'evento': dataUpdateEvento, idEvento: this.list[0].idEvento}
+      this.eventCustomSrv.actualizarEvento(data).subscribe(result=>{
+        console.log(result)
+        if(result['exito']){
+          Swal.fire(
+            'Exito',
+            'Usuario actualizado',
+            'success'
+          ).then(response=>{
+            location.reload();
+          })
+        }
+      })
+      
+    }
+  }
+
+  obtenerEventoActualizado(){
+    let titulo=<any>document.getElementById('inputTitulo')['value'];
+    let descripcion=<any>document.getElementById('inputDescripcion')['value'];
+    let categoria=<any>document.getElementById('selectCategoria')['value'];
+    let enlace=<any>document.getElementById('inputEnlace')['value'];
+    let instructor=<any>document.getElementById('selectInstructor')['value'];
+    let fechaLimite=<any>document.getElementById('inputFechaLimite')['value'];
+
+    let eventoActualizado={titulo: titulo,descripcion: descripcion,categoria: categoria,enlace: enlace,
+                            instructor: instructor, fechaLimite: fechaLimite
+                          }
+
+    return eventoActualizado
+
+
+  }
+
+
+  cambiarTextoButton(){
+    var uno = document.getElementById('btn_editar');
+    uno.innerHTML='Actualizando ...'
+    uno.setAttribute('disabled', "true");
   }
 
 }

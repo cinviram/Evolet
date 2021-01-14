@@ -60,8 +60,6 @@ export class AgendaPersonalizadaComponent implements OnInit {
 
   buscarEventoCoincidencia(event){
     let palabra=event.target.value;
-    console.log(palabra)
-
     let palabraMinus=palabra.toLowerCase();
     let coincidencias=[]
 
