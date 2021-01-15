@@ -1,6 +1,6 @@
 ::ng-deep .md-class{
-    max-width: 50rem !important;
-    width: 50rem ;
+    max-width: 60rem !important;
+    width: 60rem ;
 }
 
 
@@ -14,6 +14,6 @@
 }
 
 #col_derecha{
-    margin: 0;
     padding: 0px;
+    margin-left: -2%;
 }

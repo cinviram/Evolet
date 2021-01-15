@@ -44,6 +44,11 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
     this.eventCustomSrv.obtenerinfoUser(JSON.stringify(this.list[0].usuarios)).subscribe(data=>{
       console.log(data)
       this.lista_usuarios=<any>data;
+
+      for(let indice in this.lista_usuarios){
+        this.cambiarSelectEstadoUser(this.lista_usuarios[indice]['idUser'],this.lista_usuarios[indice]['estado']);
+      }
+
     })
     
   }
@@ -83,9 +88,24 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
 
   }
 
-  actualizarEvento(event){
+  cambiarSelectEstadoUser(idUser,estado){
+    let opciones=['Pendiente','Confirmado','Completado','Vencido','Anulado']
+    let posicion=opciones.indexOf(estado)
+    setTimeout(()=>{
+      
+      let selector:any=document.getElementById(`selectEstado-${idUser}`);
+      selector.selectedIndex = posicion;
+    
+    
+    },1000)
+
+    //asigno al campo el nombre del instructor actualmente asignado
     
 
+  }
+
+  actualizarEvento(event){
+    
     if(this.statusDisabled){ //si es true, entonces tiene disabled
       this.statusDisabled=false;
       this.nombreBtnEditar='Actualizar'; 
@@ -112,6 +132,33 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
     }
   }
 
+  actualizarEstadoUser(event){
+    let idUser=event.target.id;
+    let estado=document.getElementById(`selectEstado-${idUser}`)['value'];
+    this.eventCustomSrv.actualizarEstadoUser({idUser: idUser,estado: estado,idEvento: this.list[0].idEvento}).subscribe(result=>{
+      console.log(result)
+      Swal.fire(
+        'Exito',
+        'Estado actualizado',
+        'success'
+      )
+    })
+  }
+
+  eliminarUsuarioEvento(event){
+    let idUser=event.target.id;
+    let idEvento=this.list[0].idEvento;
+    this.eventCustomSrv.eliminarUsuarioEvento({idUser: idUser,idEvento: idEvento}).subscribe(result=>{
+      console.log(result)
+      Swal.fire(
+        'Exito',
+        'Usuario eliminado',
+        'success'
+      )
+    })
+  }
+
+
   obtenerEventoActualizado(){
     let titulo=<any>document.getElementById('inputTitulo')['value'];
     let descripcion=<any>document.getElementById('inputDescripcion')['value'];
@@ -128,7 +175,6 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
 
 
   }
-
 
   cambiarTextoButton(){
     var uno = document.getElementById('btn_editar');

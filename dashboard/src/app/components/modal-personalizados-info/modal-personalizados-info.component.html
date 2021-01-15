@@ -32,7 +32,7 @@
                                     {{categoria}}
                                 </option>
                         </select>
-                        </div>
+                    </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEnlace" class="col-sm-3 col-form-label">Enlace </label>
@@ -68,30 +68,49 @@
                     No existen usuarios asignados por el momento
                 </div>
                 <ng-template #elseBlock>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col-2">#</th>
-                            <th scope="col-6">Nombres</th>
-                            <th scope="col-2">Estado</th>
-                            <th scope="col-1">Acciones</th>
+                    <div class="container">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col-2">#</th>
+                                <th scope="col-4">Nombres</th>
+                                <th scope="col-3">Estado</th>
+                                <th scope="col-1">Acciones</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor='let usuario of lista_usuarios; index as i'>
+                                
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{usuario.nombres}}</td>
+                                <td>
+                                    <select class="custom-select mr-sm-2" id="selectEstado-{{usuario.idUser}}" >
+                                        <!-- (change)='cambioSelector()' -->
+                                            <option value="Pendiente">Pendiente</option>
+                                            <option value="Confirmado">Confirmado</option> 
+                                            <option value="Completado">Completado</option>
+                                            <option value="Vencido">Vencido</option>
+                                            <option value="Anulado">Anulado</option>
+                                    </select>
+                                    
+                                </td>
+                                <!-- <td>{{lista_usuarios.estado}}</td> -->
+                                <td>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button id="{{usuario.idUser}}" type="button" class="btn btn-warning btn-sm" (click)='actualizarEstadoUser($event)'>Cambiar</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="{{usuario.idUser}}" type="button" class="btn btn-danger btn-sm" (click)='eliminarUsuarioEvento($event)'>Eliminar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                             
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor='let usuario of lista_usuarios; index as i'>
-                            
-                            <th scope="row">{{i+1}}</th>
-                            <td>{{usuario.nombres}}</td>
-                            <td>{{usuario.estado}}</td>
-                            <!-- <td>{{lista_usuarios.estado}}</td> -->
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm">Cambiar</button>
-                            </td>
-                        </tr>
-                        
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </ng-template>
                 
             </div>

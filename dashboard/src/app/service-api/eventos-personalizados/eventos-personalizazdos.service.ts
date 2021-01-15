@@ -28,5 +28,13 @@ export class EventosPersonalizazdosService {
     return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEventoAgenda`,dataEvento); 
   }
 
+  actualizarEstadoUser(dataUser){ //envio el evento y el id
+    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEstadoUsuario`,dataUser); 
+  }
+
+  eliminarUsuarioEvento(dataUser){ //envio el evento y el id
+    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/eliminarUsuarioEvento`,dataUser); 
+  }
+
   
 } 
