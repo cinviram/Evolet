@@ -181,7 +181,7 @@ export class ModalCrearUserComponent implements OnInit {
 
     this.removerClaseInvalid()
     
-    let status=true;
+    let status=true; //asumo que el usuario es valido
 
     if(usuario['nombres']==''){
       var elemento = document.getElementById("inputNombres");

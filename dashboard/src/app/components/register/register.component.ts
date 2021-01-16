@@ -18,6 +18,10 @@ export class RegisterComponent implements OnInit {
   imgObject: any;
   //seccion firebase
   task: AngularFireUploadTask;
+  usuarioIncorrecto:boolean=false;
+
+  listaErrores=['Complete los campos en rojo']
+  //mensajeError='*Complete los campos en rojo'
 
   //Variable - constructor
   constructor(
@@ -27,21 +31,27 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearAdministrador(email, password) {
-    //validar primero
-    //this.cambiarTextoButton();
-
-    console.log(email, password)
+  crearAdministrador() {
+    
     let usuarioNuevo = this.obtenerUsuarioNuevo();
-    console.log(usuarioNuevo)
-    //funcion para subir foto de perfil primero a firebase
-    this.uploadFile(this.imgObject, usuarioNuevo); //dentro registro el evento
+    //validar primero
+    let valido=this.validarFormularioRegistro(usuarioNuevo);
+
+    if(!valido){
+      this.usuarioIncorrecto=true;
+    }else{
+      console.log('usuaro validado')
+      this.removeItemFromArr(this.listaErrores,'Complete los campos en rojo');
+      this.actualizarEstadoRegistrar();
+      this.uploadFile(this.imgObject, usuarioNuevo); //dentro registro el evento
+    }
+
 
   }
 
   obtenerUsuarioNuevo() {
     var objectNombre: any = document.getElementById("name")
-    var objectAlias: any = document.getElementById("username")
+    var objectAlias: any = document.getElementById("alias")
     var objectCorreo: any = document.getElementById("email")
     var objectPassword: any = document.getElementById("password")
     var objectTelefono: any = document.getElementById("telefono")
@@ -51,7 +61,7 @@ export class RegisterComponent implements OnInit {
     var objectLinkedin: any = document.getElementById("linkedin");
 
     var name = objectNombre.value
-    var username = objectAlias.value
+    var alias = objectAlias.value
     var email = objectCorreo.value
     var password = objectPassword.value
     var telefono = objectTelefono.value
@@ -64,11 +74,159 @@ export class RegisterComponent implements OnInit {
 
     //Evento nuevo
     let usuarioNuevo = {
-      'nombre': name, 'alias': username, 'email': email,
+      'nombre': name, 'alias': alias, 'email': email,
       'password': password, 'telefono': telefono, 'empresa': empresa,
       'sexo': sexo, 'fecha': fec_nac, 'imgEvento': '', 'rol': rol, 'linkedin': linkedin
     }
     return usuarioNuevo
+  }
+
+  validarFormularioRegistro(usuarioNuevo){
+    this.removerClaseInvalid();
+
+    let status=true; //asumo que el usuario es correcto
+
+    if(usuarioNuevo['nombre']==''){
+      var elemento = document.getElementById("name");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(usuarioNuevo['alias']==''){
+      var elemento = document.getElementById("alias");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(usuarioNuevo['email']==''){
+      var elemento = document.getElementById("email");
+      elemento.className += " campo_invalido";
+      status=false;
+    }else{
+      //validando que formato de correo
+      console.log('hola0')
+      console.log(usuarioNuevo['email'])
+      console.log(this.validarEmail(usuarioNuevo['email']))
+      if(!this.validarEmail(usuarioNuevo['email'])){
+        var elemento = document.getElementById("email");
+
+        if(this.listaErrores.indexOf('Correo invalido')==-1)
+          this.listaErrores.push('Correo invalido')
+        elemento.className += " campo_invalido";
+        status=false;
+
+      }else{
+        this.removeItemFromArr(this.listaErrores,'Correo invalido')
+        console.log(this.listaErrores)
+      }
+    }
+
+
+    if(usuarioNuevo['empresa']==''){
+      var elemento = document.getElementById("empresa");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+
+    if(usuarioNuevo['password']==''){
+      var elemento = document.getElementById("password");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(document.getElementById("password2")['value']==''){
+      var elemento = document.getElementById("password2");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(usuarioNuevo['password']!=document.getElementById("password2")['value']){
+      status=false;
+      var pw1 = document.getElementById("password");
+      var pw2 = document.getElementById("password2");
+      pw1.className += " campo_invalido";
+      pw2.className += " campo_invalido";
+      if(this.listaErrores.indexOf('Contraseñas no coinciden')==-1)
+        this.listaErrores.push('Contraseñas no coinciden')
+
+    }else{
+      this.removeItemFromArr(this.listaErrores,'Contraseñas no coinciden')
+    }
+
+    if(usuarioNuevo['telefono']==''){
+      var elemento = document.getElementById("telefono");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(usuarioNuevo['empresa']==''){
+      var elemento = document.getElementById("empresa");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(usuarioNuevo['linkedin']==''){
+      var elemento = document.getElementById("linkedin");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    if(!this.url){
+      var elemento = document.getElementById("fotoPerfil");
+      elemento.className += " campo_invalido";
+      status=false;
+    }
+
+    return status;
+
+  }
+
+  validarEmail(valor) {
+    var regex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  
+    if (!regex.test(valor)) {
+        return false;
+    } else {
+        return true;
+    }
+  }
+
+  removeItemFromArr ( arr, item ) {
+    var i = arr.indexOf( item );
+ 
+    if ( i !== -1 ) {
+        arr.splice( i, 1 );
+    }
+}
+
+  actualizarEstadoRegistrar(){
+    document.getElementById('btn_registrar')['value']='Registrando...';
+    document.getElementById('btn_registrar').setAttribute('disabled', "true");
+  }
+
+  removerClaseInvalid(){
+    var element1 = document.getElementById("name");
+    var element2 = document.getElementById("alias");
+    var element3 = document.getElementById("email");
+    var element4 = document.getElementById("password");
+    var element5 = document.getElementById("telefono");
+    var element6 = document.getElementById("empresa");
+    var element7 = document.getElementById("linkedin");
+    var element8 = document.getElementById("password2");
+    var element9 = document.getElementById("fotoPerfil");
+
+   
+    element1.classList.remove("campo_invalido");
+    element2.classList.remove("campo_invalido");
+    element3.classList.remove("campo_invalido");
+    element4.classList.remove("campo_invalido");
+    element5.classList.remove("campo_invalido");
+    element6.classList.remove("campo_invalido");
+    element7.classList.remove("campo_invalido");
+    element8.classList.remove("campo_invalido");
+    element9.classList.remove("campo_invalido");
+
   }
 
   readUrl(event: any) {

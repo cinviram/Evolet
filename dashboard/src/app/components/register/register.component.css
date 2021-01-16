@@ -16,9 +16,9 @@ body {
 
 #login-box {
   position: relative;
-  margin: 5% auto;
+  margin: 2% auto;
   width: 600px;
-  height: 800px;
+  height: 600px;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -30,7 +30,7 @@ body {
   left: 0;
   box-sizing: border-box;
   padding: 40px;
-  width: 300px;
+  width: 600px;
   height: 400px;
 }
 
@@ -56,7 +56,9 @@ label,p {
   transition: 0.2s ease;
   
 }
-
+.espaciado{
+  margin-right: 20%;
+}
 input,
 label{
   margin: .2rem 0;
@@ -71,7 +73,7 @@ select{
   box-sizing: border-box;
   margin-bottom: 20px;
   padding: 4px;
-  width: 220px;
+  width: 200px;
   height: 32px;
   border: none;
   border-bottom: 1px solid #AAA;
@@ -207,4 +209,9 @@ button.social-signin.google {
   border: 0;
   color: white;
   background-color: #00A8E8;
+}
+
+.campo_invalido{
+  border: solid 1px red !important;
+  border-radius: 5px;
 }

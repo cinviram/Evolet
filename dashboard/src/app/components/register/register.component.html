@@ -5,49 +5,74 @@
 <div id="login-box">
   <div class="left">
     <h1>Formulario de Registro</h1>
+    <div *ngIf='usuarioIncorrecto'>
+      <p *ngFor="let error of listaErrores" style="color: red; font-weight: bold; height: 10px;">{{error}}</p>
+    </div>
 
-    <input type="text" id="name" name="name" placeholder="Nombres" />
-    <input type="text" id="username" name="username" placeholder="Alias" />
-    <input type="text" id="email" name="email" placeholder="Email Address" #userEmail required/>
-    <input type="text" id="password" name="password" placeholder="Password" #userPwd required/>
-    <!-- <div class="formGroup">
-      <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-    </div> -->
-    <!-- <div class="formGroup">
-      <input type="password" class="formControl" placeholder="Password" #userPwd required>
-    </div> -->
-    <input type="text" id="telefono" name="telefono" placeholder="Teléfono" />
-    <input type="text" id="empresa" name="empresa" placeholder="Empresa" />
-    <input type="url" id="linkedin" name="empresa" placeholder="Linkedin" />
-    <p>Sexo:
-      <select id="sexo" name="sexo">
-        <option>Masculino</option>
-        <option>Femenino</option>
-      </select>
-    </p>
-    <label for="start">Fecha de nacimiento:</label>
-    <input type="date" id="fec_nac" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
-    <label for="inputPerfil" class="col-sm-3 col-form-label">Avatar</label>
-    <div class="form-group row">
-      <div class="col-sm-7">
-        <div class="custom-file">
-          <input type="file" (change)="readUrl($event)" class="custom-file-input" accept="image/jpeg, image/png"
-            id="imgPerfil" lang="es">
-          <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+    <form class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text" id="name" name="name" placeholder="Nombres (*)" />
+      </div>
+      
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" id="alias" name="alias" placeholder="Alias (*)" />
+      </div>
+
+      <div class="form-group mb-2">
+        <input type="text" id="email" name="email" placeholder="Correo electrónico (*)" #userEmail required/>
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" id="empresa" name="empresa" placeholder="Empresa (*)" />
+      </div>
+      <div class="form-group mb-2">
+        <input type="password" id="password" name="password" placeholder="Contraseña (*)" />
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="password" id="password2" name="password2" placeholder="Confirmar Contraseña (*)"/>
+      </div>
+      
+      <div class="form-group mb-2">
+        <input type="text" id="telefono" name="telefono" placeholder="Teléfono (*)" />
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="url" id="linkedin" name="linkedin" placeholder="Linkedin (*)" />
+      </div>
+
+      <div class="form-group mb-2">
+        <p>Sexo:
+          <select id="sexo" name="sexo">
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+        </p>
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <p>Fecha de nacimiento
+          <input type="date" id="fec_nac" name="trip-start" value="2018-07-22" min="1900-01-01" max="2020-12-31">
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <p style="margin-bottom: 0px;"> Foto de perfil</p>
+            <div id="fotoPerfil" class="custom-file" style="border: solid 1px #32508E; border-radius: 5px;">
+              <input type="file" (change)="readUrl($event)" class="custom-file-input" accept="image/jpeg, image/png"
+                id="imgPerfil" lang="es">
+              <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+            </div>
+        </div>
+        <div class="col-4">
+          <img *ngIf="url" class="ajusteTam" [src]="url">
         </div>
       </div>
 
-      <img *ngIf="url" class="ajusteTam" [src]="url">
+    </form>
+    
+    <div class="row justify-content-center mt-3">
+        <input id="btn_registrar" style="background-color: #32508E !important; " type="submit" (click)="crearAdministrador()" class="btn btn-primary fadeIn fourth" value="Registrar">                
     </div>
-    <input type="submit" (click)="crearAdministrador(userEmail.value, userPwd.value)" class="fadeIn fourth" value="Registrar">
+    
+    
   </div>
 
-  <div class="right">
-    <span class="loginwith">Sign in with<br />social network</span>
 
-    <!--<button class="social-signin facebook">Log in with facebook</button>-->
-    <button class="social-signin google" (click)="AuthService.GoogleAuth()"> <i class="fab fa-google-plus-g"></i>
-      Ingresa con Google</button>
-  </div>
-  <!--<div class="or">O</div>-->
 </div>
