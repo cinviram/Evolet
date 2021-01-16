@@ -9,31 +9,31 @@ export class EventosPersonalizazdosService {
   constructor(private http: HttpClient) { }
 
   obtenerEventos(){
-    return this.http.get(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/obtenerEventosAgenda`); 
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/obtenerEventosAgenda`); 
   }
 
   obtenerinfoUser(idUsers){
-    return this.http.get(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/obtenerDataUserId/${idUsers}`); 
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/obtenerDataUserId/${idUsers}`); 
   }
 
   crearEventoAgenda(evento){
-    return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarEventosAgenda`,evento); 
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/registrarEventosAgenda`,evento); 
   }
 
   asignarUsuariosEvento(asignacion){
-    return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarAsignacionAgenda`,asignacion); 
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/registrarAsignacionAgenda`,asignacion); 
   }
 
   actualizarEvento(dataEvento){ //envio el evento y el id
-    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEventoAgenda`,dataEvento); 
+    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/actualizarEventoAgenda`,dataEvento); 
   }
 
   actualizarEstadoUser(dataUser){ //envio el evento y el id
-    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/actualizarEstadoUsuario`,dataUser); 
+    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/actualizarEstadoUsuario`,dataUser); 
   }
 
   eliminarUsuarioEvento(dataUser){ //envio el evento y el id
-    return this.http.put(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/eliminarUsuarioEvento`,dataUser); 
+    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/eliminarUsuarioEvento`,dataUser); 
   }
 
   
