@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   task: AngularFireUploadTask;
   usuarioIncorrecto:boolean=false;
 
-  listaErrores=['Complete los campos en rojo']
+  listaErrores=['*Complete los campos en rojo']
   //mensajeError='*Complete los campos en rojo'
 
   //Variable - constructor
@@ -110,14 +110,14 @@ export class RegisterComponent implements OnInit {
       if(!this.validarEmail(usuarioNuevo['email'])){
         var elemento = document.getElementById("email");
 
-        if(this.listaErrores.indexOf('Correo invalido')==-1)
-          this.listaErrores.push('Correo invalido')
+        if(this.listaErrores.indexOf('*Correo invalido')==-1)
+          this.listaErrores.push('*Correo invalido')
         elemento.className += " campo_invalido";
         status=false;
 
       }else{
-        this.removeItemFromArr(this.listaErrores,'Correo invalido')
-        console.log(this.listaErrores)
+        this.removeItemFromArr(this.listaErrores,'*Correo invalido')
+        
       }
     }
 
@@ -141,17 +141,39 @@ export class RegisterComponent implements OnInit {
       status=false;
     }
 
+    if(usuarioNuevo['password'].length<6){ //verifico primer password minimo length 6
+      status=false;
+      var pw1 = document.getElementById("password");
+      pw1.className += " campo_invalido";
+      if(this.listaErrores.indexOf('*Contraseña mínimo 6 caracteres')==-1)
+        this.listaErrores.push('*Contraseña mínimo 6 caracteres')
+    }else{
+      this.removeItemFromArr(this.listaErrores,'*Contraseña mínimo 6 caracteres')
+    }
+    
+    if(document.getElementById("password2")['value'].length<6){
+      var pw2 = document.getElementById("password2");
+      pw2.className += " campo_invalido";
+      console.log(this.listaErrores)
+      if(this.listaErrores.indexOf('*Contraseña mínimo 6 caracteres')==-1)
+          this.listaErrores.push('*Contraseña mínimo 6 caracteres')
+
+    }else{
+      this.removeItemFromArr(this.listaErrores,'*Contraseña mínimo 6 caracteres')
+    }
+
+
     if(usuarioNuevo['password']!=document.getElementById("password2")['value']){
       status=false;
       var pw1 = document.getElementById("password");
       var pw2 = document.getElementById("password2");
       pw1.className += " campo_invalido";
       pw2.className += " campo_invalido";
-      if(this.listaErrores.indexOf('Contraseñas no coinciden')==-1)
-        this.listaErrores.push('Contraseñas no coinciden')
+      if(this.listaErrores.indexOf('*Contraseñas no coinciden')==-1)
+        this.listaErrores.push('*Contraseñas no coinciden')
 
     }else{
-      this.removeItemFromArr(this.listaErrores,'Contraseñas no coinciden')
+      this.removeItemFromArr(this.listaErrores,'*Contraseñas no coinciden')
     }
 
     if(usuarioNuevo['telefono']==''){
