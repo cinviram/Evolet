@@ -1,3 +1,5 @@
+
+
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
@@ -13,7 +15,8 @@
       <form>
         <input type="text" class="form-control" placeholder="Correo" #userName required>
         <input type="password" class="fadeIn third" placeholder="Contraseña" #userPassword required >
-        <input type="submit" (click)="iniciarSesion(userName.value, userPassword.value)" class="fadeIn fourth" value="Ingresar">
+        <input style="margin-bottom: 15px;" type="submit" (click)="iniciarSesion(userName.value, userPassword.value)" class="fadeIn fourth" value="Ingresar">
+        <button class="fadeIn fourth loginBtn loginBtn--google mb-3" (click)=AuthService.GoogleAuth()>Continuar con Google</button>
       </form>
   
       <!-- Remind Passowrd -->
