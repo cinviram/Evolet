@@ -1,3 +1,6 @@
+
+
+
 body {
   color: #00171F;
   font-family: Lato, sans-serif;
@@ -42,7 +45,7 @@ table {
   margin: 0 5px;
   border: 0;
   color: white;
-  background-color: #00A8E8;
+  background-color: #183fbc;
 }
 
 .btn-delete {
@@ -63,23 +66,28 @@ table {
   Navigation
 */
 
+.active{
+  color: #37b6bd !important;
+  background: white !important;
+}
+
 .nav {
   flex: 1;
   max-width: 180px;
-  background-color: #5fbae9;
+  background-color:   #37b6bd;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
 }
 
 .list-group-item{
-  background-color: #5fbae9;
+  background-color: #37b6bd;
+  color: white;
 }
 
 .nav__logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
   color: #ccc;
   font-size: 24px;
   letter-spacing: 1px;
@@ -125,7 +133,7 @@ table {
   height: 50px;
   font-size: 13px;
   font-weight: 300;
-  background-color: #002a38;
+  background-color: #37b6bd;
 }
 
 .utility-bar__inner {
@@ -143,9 +151,6 @@ table {
   list-style: none;
 }
 
-.utility-bar__list-item {
-  
-}
 
 .utility-bar__item-link {
   display: flex;
@@ -187,9 +192,18 @@ table {
 }
 
 .utility-bar__account-name {
-  color: #00A8E8;
+  color: white;
+  font-weight: bold;
   transition: color 200ms ease-out;
-}  
+}
+
+.imagenLogo{
+  width: 100px;
+  height: 60px;
+  margin-top: 40%;
+  margin-left: 20%;
+
+}
 
 /**
   Content

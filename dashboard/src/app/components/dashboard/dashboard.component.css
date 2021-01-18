@@ -45,7 +45,7 @@ body {
     margin: 0 5px;
     border: 0;
     color: white;
-    background-color: #00A8E8;
+    background-color: #183fbc;
   }
   
   .btn-delete {
@@ -72,6 +72,7 @@ body {
   }
 
   .nav {
+    padding-top:0px !important;
     flex: 1;
     max-width: 180px;
     background-color:   #37b6bd;
@@ -88,7 +89,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
     color: #ccc;
     font-size: 24px;
     letter-spacing: 1px;
@@ -200,9 +200,10 @@ body {
 
   .imagenLogo{
     width: 100px;
-    height: 50px;
+    height: 60px;
     margin-top: 40%;
-    margin-left: 10%;
+    margin-left: 20%;
+
   }
   
   /**

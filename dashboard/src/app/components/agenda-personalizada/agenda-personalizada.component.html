@@ -4,85 +4,88 @@
 
 <div class="app-container">
 
-    <nav class="nav">
+  <nav class="nav">
+    <img class="imagenLogo" src="https://static.s123-cdn.com/uploads/1779716/400_5c6dc41fdc925.png" alt="">
+    <ul class="list-group">
+      <li class="list-group-item" routerLink="../dashboard"><i class="fa fa-users"></i> Usuarios</li>
+      <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Agenda General
+      </li>
+      <li class="list-group-item active"><i class="fa fa-address-book"></i> Agenda
+        Personalizada</li>
+      <li class="list-group-item" routerLink="../profile"><i class="fas fa-user-circle"></i> Mi Perfil</li>
+      <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
+        <i class="fas fa-sign-out-alt"></i> Salir
+      </button>
+    </ul>
+  </nav>
 
-        <a href="#" class="nav__logo">
+  <div class="app-view">
+
+    <nav class="utility-bar">
+      <div class="utility-bar__inner">
+        <a a routerLink="../profile" class="utility-bar__account">
+          <span class="utility-bar__account-avatar"></span>
+          <div class="row" *ngIf="AuthService.userState as user">
+            <span class="utility-bar__account-name">{{user.email}}</span>
+            <!--Crear acceso al perfil-->
+          </div>
         </a>
-        <ul class="list-group">
-            <li class="list-group-item" routerLink="../dashboard"><i class="fa fa-users"></i> Usuarios</li>
-            <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Agenda General</li>
-            <li class="list-group-item active"><i class="fa fa-address-book"></i> Agenda
-                Personalizada</li>
-            <li class="list-group-item" routerLink="../profile"><i class="fas fa-user-circle"></i> Mi Perfil</li>
-            <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
-                <i class="fas fa-sign-out-alt"></i> Salir
-            </button>
-        </ul>
+      </div>
     </nav>
+    <main class="content">
+      <h1>Eventos Personalizados</h1>
+      <div class="row">
+        <div class="col-3">
+          <select id="tipo_user" class="form-control" (change)="filtrarCategoria($event)">
+            <option value="todos" selected>Todos</option>
+            <option *ngFor='let categoria of categoriasUnicas' value="{{categoria}}">{{categoria}}</option>
 
-    <div class="app-view">
+          </select>
+        </div>
 
-        <nav class="utility-bar">
-            <div class="utility-bar__inner">
-                <a a routerLink="../profile" class="utility-bar__account">
-                    <span class="utility-bar__account-avatar"></span>
-                    <div class="row" *ngIf="AuthService.userState as user">
-                        <span class="utility-bar__account-name">{{user.email}}</span>
-                        <!--Crear acceso al perfil-->
-                    </div>
-                </a>
-            </div>
-        </nav>
-        <main class="content">
-            <h1>Eventos Personalizados</h1>
-            <div class="row">
-                <div class="col-3">
-                    <select id="tipo_user" class="form-control" (change)="filtrarCategoria($event)">
-                      <option value="todos" selected>Todos</option>
-                      <option *ngFor='let categoria of categoriasUnicas' value="{{categoria}}">{{categoria}}</option>
-                      
-                    </select>
-                  </div>
-        
-                <div class="col-6">
-                  <input type="text" class="form-control" (keyup)='buscarEventoCoincidencia($event)' placeholder="Buscar evento personalizado" >
-                  
-                </div>
-                <div class="col-3">
-                  <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
-                  <button (click)="crearEvento($event)" class="btn" >Crear evento<i class="fa fa-plus"></i></button>
-                  
-                </div> 
-              </div>
+        <div class="col-6">
+          <input type="text" class="form-control" (keyup)='buscarEventoCoincidencia($event)'
+            placeholder="Buscar evento personalizado">
 
-              <!-- Tabla de datos -->
-              <table>
-                <thead>
-                  <tr>
-                    <th>Titulo</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Categoría</th>
-                  </tr>
-                </thead>
-                <tbody> 
-                  <tr *ngFor='let evento of eventosData'>
-                    <td>
-                      {{evento.titulo}}
-                    </td>
-                    <td>{{evento.fechaLimite2[0]}}</td>
-                    <td>{{evento.fechaLimite2[1]}}</td>
-                    <td>{{evento.categoria}}</td>
-                    
-                    <td>
-                      
-                      <button id='{{evento.idEvento}}' (click)="asignarUsuarioEvento($event)" class="btn">Asignar<i class="fa fa-info-circle"></i></button>
-                      <button id='{{evento.idEvento}}' (click)="verDetalleEvento($event)" class="btn">Ver más<i class="fa fa-info-circle"></i></button>
-                      <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar <i class='fas fa-trash-alt'></i></button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-        </main>
-    </div>
+        </div>
+        <div class="col-3">
+          <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
+          <button (click)="crearEvento($event)" class="btn">Crear evento<i class="fa fa-plus"></i></button>
+
+        </div>
+      </div>
+
+      <!-- Tabla de datos -->
+      <table>
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Categoría</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let evento of eventosData'>
+            <td>
+              {{evento.titulo}}
+            </td>
+            <td>{{evento.fechaLimite2[0]}}</td>
+            <td>{{evento.fechaLimite2[1]}}</td>
+            <td>{{evento.categoria}}</td>
+
+            <td>
+
+              <button id='{{evento.idEvento}}' (click)="asignarUsuarioEvento($event)" class="btn">Asignar <i
+                  class="fa fa-check-square"></i></button>
+              <button id='{{evento.idEvento}}' (click)="verDetalleEvento($event)" class="btn">Ver más <i
+                  class="fa fa-info-circle"></i></button>
+              <button id='{{evento.idEvento}}' (click)="eliminarEvento($event)" class="btn btn-delete">Eliminar <i
+                  class='fas fa-trash-alt'></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
 </div>
