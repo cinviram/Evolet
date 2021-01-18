@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title">Asignación de usuario</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()"> 
+    <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarModal()"> 
         <span aria-hidden="true">&times;
         </span>
     </button>
@@ -42,7 +42,7 @@
                         <td>{{usuario.tipoUsuario}}</td>
                         <td>{{usuario.empresa}}</td>
                         <td>
-                            <input (change)='verificarAsignacion($event)' type="checkbox" class="form-check-input ml-3" id="{{usuario.idUser}}">
+                            <input [checked]=usuario.marcado (change)='verificarAsignacion($event)' type="checkbox" class="form-check-input ml-3" id="check_{{usuario.idUser}}">
                         </td>
                       </tr>
                       

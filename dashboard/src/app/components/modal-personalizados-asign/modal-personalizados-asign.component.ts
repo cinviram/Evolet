@@ -9,7 +9,7 @@ import {EventosPersonalizazdosService} from '../../service-api/eventos-personali
 @Component({
   selector: 'app-modal-personalizados-asign',
   templateUrl: './modal-personalizados-asign.component.html',
-  styleUrls: ['./modal-personalizados-asign.component.css']
+  styleUrls: ['./modal-personalizados-asign.component.css'] 
 })
 export class ModalPersonalizadosAsignComponent implements OnInit {
 
@@ -35,6 +35,16 @@ export class ModalPersonalizadosAsignComponent implements OnInit {
       console.log(data)
       this.listadoUsuariosRespaldo=data;
       this.listadoUsuarios=data;
+
+      //asignamos a todos los usuarios marcados en false;
+      for(let indice in this.listadoUsuarios){
+        let usuario=this.listadoUsuarios[indice]['marcado']=false;
+        console.log(usuario)
+        
+      }
+
+      console.log(this.listadoUsuarios)
+
     })
   }
 
@@ -63,7 +73,10 @@ export class ModalPersonalizadosAsignComponent implements OnInit {
     //console.log(event)
 
     let check=event.target.checked;
-    let idUser=event.target.id
+    
+    let string_idUser=event.target.id
+    let arrayId=string_idUser.split('_');
+    let idUser=arrayId[1];
     
 
     if(check){
@@ -71,6 +84,8 @@ export class ModalPersonalizadosAsignComponent implements OnInit {
       for(let indice in this.listadoUsuariosRespaldo){
         let elemento=this.listadoUsuariosRespaldo[indice];
         if(elemento.idUser==idUser){
+          //marcando el usuario como asignado
+          elemento.marcado=true;
           this.listaAsignados.push(elemento.idUser); 
         }
       }
@@ -78,6 +93,8 @@ export class ModalPersonalizadosAsignComponent implements OnInit {
     }else{
       console.log('voy a quitar');
       let usuario=this.buscarUsuario(idUser);
+      //marcando el usuario como asignado
+      usuario.marcado=false;
       this.removeItemFromArr(this.listaAsignados,usuario.idUser);
       
     }
@@ -121,6 +138,11 @@ export class ModalPersonalizadosAsignComponent implements OnInit {
         return usuario;
       }
     }
+  }
+
+  //cerrar Modal
+  cerrarModal(){
+    this.bsModalRef.hide()
   }
 
 }

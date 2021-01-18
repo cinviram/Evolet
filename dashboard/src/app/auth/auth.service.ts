@@ -73,14 +73,14 @@ export class AuthService {
   SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['login']);
+        //this.router.navigate(['login']);
       })
   }
 
   ForgotPassword(passwordResetEmail) {
     return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        return 'Enviado';
       }).catch((error) => {
         window.alert(error)
       })

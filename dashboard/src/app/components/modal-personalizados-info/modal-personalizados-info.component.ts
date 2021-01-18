@@ -182,4 +182,9 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
     uno.setAttribute('disabled', "true");
   }
 
+  //cerrar Modal
+  cerrarModal(){
+    this.bsModalRef.hide()
+  }
+
 }

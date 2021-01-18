@@ -310,7 +310,7 @@ export class RegisterComponent implements OnInit {
                 'Usuario creado',
                 'success'
               ).then(response => {
-                location.reload();
+                location.href='/login'
               })
             })
 

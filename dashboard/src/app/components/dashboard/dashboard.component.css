@@ -66,16 +66,22 @@ body {
     Navigation
   */
 
+  .active{
+    color: #37b6bd !important;
+    background: white !important;
+  }
+
   .nav {
     flex: 1;
     max-width: 180px;
-    background-color: #5fbae9;
+    background-color:   #37b6bd;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
   }
 
   .list-group-item{
-    background-color: #5fbae9;
+    background-color: #37b6bd;
+    color: white;
   }
   
   .nav__logo {
@@ -128,7 +134,7 @@ body {
     height: 50px;
     font-size: 13px;
     font-weight: 300;
-    background-color: #002a38;
+    background-color: #37b6bd;
   }
   
   .utility-bar__inner {
@@ -187,9 +193,17 @@ body {
   }
   
   .utility-bar__account-name {
-    color: #00A8E8;
+    color: white;
+    font-weight: bold;
     transition: color 200ms ease-out;
-  }  
+  }
+
+  .imagenLogo{
+    width: 100px;
+    height: 50px;
+    margin-top: 40%;
+    margin-left: 10%;
+  }
   
   /**
     Content

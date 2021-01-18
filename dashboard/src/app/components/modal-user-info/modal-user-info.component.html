@@ -30,7 +30,7 @@
         <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Sexo (*)</label>
             <div class="col-sm-7">
-                <select class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
+                <select [disabled]='statusInput' class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
                     <option selected value="masculino">Masculino</option>
                     <option value="femenino">Femenino</option>
                   </select>
@@ -51,7 +51,7 @@
         <div class="form-group row">
             <label for="" class="col-sm-3 col-form-label">Tipo de usuario</label>
             <div class="col-sm-7">
-                <select class="custom-select mr-sm-2" id="tipo_user" (change)="cambioTipo($event)" [ngModel]="usuarioActual.tipoUsuario">
+                <select [disabled]='statusInput' class="custom-select mr-sm-2" id="tipoUsuario" (change)="cambioTipo($event)" [ngModel]="usuarioActual.tipoUsuario">
                     <option selected value="individual">Individual</option>
                     <option value="empresarial">Empresarial</option>
                   </select>

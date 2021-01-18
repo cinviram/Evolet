@@ -74,6 +74,12 @@ export class ModalUserInfoComponent implements OnInit {
           ).then(response=>{
             location.reload();
           })
+        }else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salio mal, intente más tarde'
+          })
         }
       })
 
@@ -88,7 +94,7 @@ export class ModalUserInfoComponent implements OnInit {
     var objectAlias:any = document.getElementById("alias")
     var objectSexo:any = document.getElementById("sexo")
     var objectFecha:any = document.getElementById("fec_nac")
-    var objectTipo:any = document.getElementById("tipo_user")
+    var objectTipo:any = document.getElementById("tipoUsuario") 
     var objectEmpresa:any = document.getElementById("empresa")
     var objectCargo:any = document.getElementById("cargo")
 
@@ -99,6 +105,8 @@ export class ModalUserInfoComponent implements OnInit {
     var sexo= objectSexo.value
     var fecha= objectFecha.value
     var tipo= objectTipo.value
+
+    console.log('tipo: ',tipo)
 
     var empresa= ''
     var cargo= ''
@@ -111,17 +119,20 @@ export class ModalUserInfoComponent implements OnInit {
     
 
     //Usuario editado
-    let usuarioModificado={'idUser': this.usuarioActual.idUser,'nombres': nombres, 'correo':correo, 'celular':celular, 'alias':alias, 'sexo':sexo,'fecha':fecha,'tipo':tipo,'empresa':empresa,'cargo':cargo}
+    let usuarioModificado={'idUser': this.usuarioActual.idUser,'nombres': nombres, 
+                          'correo':correo, 'celular':celular, 'alias':alias, 
+                          'sexo':sexo,'fecha':fecha,'tipo':tipo,'empresa':empresa,'cargo':cargo}
     console.log('nombre nuevo: ',usuarioModificado)
 
     return usuarioModificado
   }
 
   cambioTipo(event){
-    console.log(event)
-
-    var objectTipo:any = document.getElementById("tipo_user")
+    var objectTipo:any = document.getElementById("tipoUsuario")
     var tipo= objectTipo.value
+
+    console.log('cambio a tipo: ',tipo)
+
     if(tipo=='empresarial'){
       this.mostrarEmpresaCargo=true;
     }else{

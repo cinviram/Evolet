@@ -158,8 +158,6 @@ export class AgendaPersonalizadaComponent implements OnInit {
   }
 
   formatearFecha(date) {
-    console.log(date)
-
     let ano = date.getFullYear();
     let mes = date.getMonth() + 1;
     let dia = date.getDate();
