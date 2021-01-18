@@ -5,6 +5,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal'
 import { AuthService } from '../../auth/auth.service';
 //Import API
 import { ApiEventoGeneralService } from '../../service-api/api-evento-general/api-evento-general.service';
+import { ApiUserService} from '../../service-api/api-user/api-user.service'
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
@@ -28,7 +29,8 @@ export class ModalCrearEventoComponent implements OnInit {
   constructor(
     public AuthService: AuthService,
     public ApiEventoGeneralService: ApiEventoGeneralService,
-    public bsModalRef: BsModalRef,private storage: AngularFireStorage
+    public bsModalRef: BsModalRef,private storage: AngularFireStorage,
+    public ApiUsuarioService: ApiUserService
   ) { }
 
   ngOnInit(): void {

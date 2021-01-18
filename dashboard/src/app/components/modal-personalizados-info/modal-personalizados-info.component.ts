@@ -147,9 +147,15 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
 
   eliminarUsuarioEvento(event){
     let idUser=event.target.id;
+    let usuario=this.obtenerUsuario(idUser);
+    
     let idEvento=this.list[0].idEvento;
     this.eventCustomSrv.eliminarUsuarioEvento({idUser: idUser,idEvento: idEvento}).subscribe(result=>{
       console.log(result)
+
+      //eliminando del listado local
+      this.removeItemFromArr(this.lista_usuarios,usuario);
+
       Swal.fire(
         'Exito',
         'Usuario eliminado',
@@ -176,6 +182,23 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
 
   }
 
+  obtenerUsuario(id){
+    for(let indice in this.lista_usuarios){
+      let usuario=this.lista_usuarios[indice];
+      if(usuario['idUser']==id){
+        return usuario
+      }
+    }
+  }
+
+  removeItemFromArr ( arr, item ) {
+    var i = arr.indexOf( item );
+ 
+    if ( i !== -1 ) {
+        arr.splice( i, 1 );
+    }
+  }
+
   cambiarTextoButton(){
     var uno = document.getElementById('btn_editar');
     uno.innerHTML='Actualizando ...'
@@ -184,6 +207,7 @@ export class ModalPersonalizadosInfoComponent implements OnInit {
 
   //cerrar Modal
   cerrarModal(){
+    location.reload();
     this.bsModalRef.hide()
   }
 

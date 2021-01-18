@@ -28,4 +28,6 @@ export class ApiEventoGeneralService {
     return this.http.post(`http://localhost:5000/backend-evolet/us-central1/app/api/eventos/registrarEventoGeneral`,evento); 
   }
 
+  
+
 }

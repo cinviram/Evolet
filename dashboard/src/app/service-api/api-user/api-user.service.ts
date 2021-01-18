@@ -38,5 +38,10 @@ export class ApiUserService {
   obtenerAdministrador(email){
     return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerAdministrador/${email}`);
   }
+
+  obtenerTokens(){
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerTokens`);
+  }
+
 }
 
