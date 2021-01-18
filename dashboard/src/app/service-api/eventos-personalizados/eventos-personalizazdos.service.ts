@@ -21,7 +21,7 @@ export class EventosPersonalizazdosService {
   }
 
   asignarUsuariosEvento(asignacion){
-    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/api/eventos/registrarAsignacionAgenda`,asignacion); 
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/registrarAsignacionAgenda`,asignacion); 
   }
 
   actualizarEvento(dataEvento){ //envio el evento y el id

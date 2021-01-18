@@ -9,7 +9,7 @@ export class ApiEventoGeneralService {
   
   //Metodos de la clase 
   obtenerEventos(){
-    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/api/eventos/obtenerEventosGeneral`); 
+    return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/obtenerEventosGeneral`); 
   }
 
   obtenerInstructores(){
@@ -25,7 +25,7 @@ export class ApiEventoGeneralService {
   }
 
   crearEvento(evento){
-    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/api/eventos/registrarEventoGeneral`,evento); 
+    return this.http.post(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/registrarEventoGeneral`,evento); 
   }
 
   
