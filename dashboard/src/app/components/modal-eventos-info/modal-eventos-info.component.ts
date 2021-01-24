@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal'
 
 //Import - servicio
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../auth/auth.service'; 
 //Import API
 import { ApiEventoGeneralService } from '../../service-api/api-evento-general/api-evento-general.service';
 // ES6 Modules or TypeScript
@@ -67,7 +67,6 @@ export class ModalEventosInfoComponent implements OnInit {
     })
 
   }
-
 
   cambiarSelect(){
 

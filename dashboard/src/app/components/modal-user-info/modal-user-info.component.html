@@ -69,9 +69,10 @@
                 <input [disabled]='statusInput' type="text" class="form-control" id="cargo" [ngModel]="usuarioActual.cargo">
             </div>
         </div>
-        
-    <button id="btn_editar" class="btn btn-delete" (click)='EditarUser($event)'>{{name_button_edit}}</button>
-    <!-- <button id="btn_crear" type="button" class="btn btn-primary" (click)='crearUsuario()'>Crear Usuario</button> -->
+        <div class="d-flex mb-3">
+            <button id="btn_editar" class="btn btn-delete ml-auto" (click)='EditarUser($event)'>{{name_button_edit}}</button>
+        </div>
+
 </div>
 
 

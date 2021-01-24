@@ -34,24 +34,29 @@ export class ModalPersonalizadosCrearComponent implements OnInit {
   }
 
   crearEvento(){
-    this.cambiarTextoButton();
 
     let eventoNuevo = this.obtenerEventoNuevo();
-    console.log(eventoNuevo)
+    //validando el evento
+    let resultado=this.validarEvento(eventoNuevo);
 
-    this.eventCustomSrv.crearEventoAgenda(eventoNuevo).subscribe(result=>{
-      console.log(result)
-
-      if (result['exito']) {
-        Swal.fire(
-          'Exito',
-          'Evento creado',
-          'success'
-        ).then(response => {
-          location.reload();
-        })
-      }
-    })
+    if(resultado){
+      this.cambiarTextoButton();
+      this.eventCustomSrv.crearEventoAgenda(eventoNuevo).subscribe(result=>{
+        console.log(result)
+  
+        if (result['exito']) {
+          Swal.fire(
+            'Exito',
+            'Evento creado',
+            'success'
+          ).then(response => {
+            location.reload();
+          })
+        }
+      })
+    }else{
+      console.log('evento no valido')
+    }
 
   }
 
@@ -99,13 +104,84 @@ export class ModalPersonalizadosCrearComponent implements OnInit {
       
       let selector:any=document.getElementById("selectCategoria")
         selector.selectedIndex = 0;
-      
-      
     },1000)
 
     //asigno al campo el nombre del instructor actualmente asignado
     
 
+  }
+
+  removerClaseInvalid(){
+    var element1 = document.getElementById("inputTitulo");
+    var element2 = document.getElementById("inputDescripcion");
+    //var element3 = document.getElementById("selectCategoria");
+    //var element4 = document.getElementById("inputNuevaCat");
+    var element5 = document.getElementById("inputEnlace");
+    var element6 = document.getElementById("selectInstructor");
+    var element7 = document.getElementById("inputFechaLimite");
+    
+   
+    element1.classList.remove("is-invalid");
+    element2.classList.remove("is-invalid");
+    //element3.classList.remove("is-invalid");
+    //element4.classList.remove("is-invalid");
+    element5.classList.remove("is-invalid");
+    element6.classList.remove("is-invalid");
+    element7.classList.remove("is-invalid");
+  
+  }
+
+  //funciones de validacion
+  validarEvento(evento){
+
+    this.removerClaseInvalid()
+    
+    let status=true; //asumo que el evento es valido
+
+    if(evento['titulo']==''){
+      var elemento = document.getElementById("inputTitulo");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    if(evento['descripcion']==''){
+      var elemento = document.getElementById("inputDescripcion");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+
+    if(evento['categoria']=="Elegir Categoría"){
+      var elemento = document.getElementById("selectCategoria");
+      elemento.className += " is-invalid";
+      status=false;
+    }else{
+      var inputNuevaCat = document.getElementById("selectCategoria")['value'];
+      
+      if(inputNuevaCat=='nuevaCat'){
+        if(evento['categoria']==''){
+          var elemento = document.getElementById("inputNuevaCat");
+          elemento.className += " is-invalid";
+          status=false;
+        }
+      }
+
+    }
+
+
+    if(evento['enlace']==''){
+      var elemento = document.getElementById("inputEnlace");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    if(evento['fechaLimite']==''){
+      var elemento = document.getElementById("inputFechaLimite");
+      elemento.className += " is-invalid";
+      status=false;
+    } 
+
+    return status
   }
 
   cambiarTextoButton(){

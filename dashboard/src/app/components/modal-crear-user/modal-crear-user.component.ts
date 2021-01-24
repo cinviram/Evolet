@@ -44,7 +44,7 @@ export class ModalCrearUserComponent implements OnInit {
     let nuevoUsuario=this.obtenerUsuarioNuevo();
     
     //valido si el usuario está correcto
-    let resultado=this.validarUsuario(nuevoUsuario);
+    let resultado=this.validarUsuario(nuevoUsuario); 
     if(resultado){
       //cambiando el estado de boton crear usuario
       this.cambiarTextoButton();

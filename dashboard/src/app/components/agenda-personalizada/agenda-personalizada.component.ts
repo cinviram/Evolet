@@ -146,7 +146,6 @@ export class AgendaPersonalizadaComponent implements OnInit {
       keyboard: false, class: 'md-class'})
   }
   
-
   //buscar evento
   buscarEvento(id){
     for(let indice in this.eventosRespaldo){
@@ -194,6 +193,22 @@ export class AgendaPersonalizadaComponent implements OnInit {
     let horaNueva = hora + ':' + minutos
 
     return [fechaNueva, horaNueva]
+  }
+
+  eliminarEvento(event){
+    console.log(event.target.id)
+    this.eventosSrv.eliminarEvento(event.target.id).subscribe(respuesta=>{
+      console.log('data del servidor: ',respuesta)
+      if(respuesta['exito']){
+        Swal.fire(
+          'Exito',
+          'Usuario eliminado',
+          'success'
+        ).then(response=>{
+          location.reload();
+        })
+      }
+    })
   }
 
 }

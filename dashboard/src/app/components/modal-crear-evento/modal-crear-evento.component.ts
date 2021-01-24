@@ -44,13 +44,21 @@ export class ModalCrearEventoComponent implements OnInit {
 
   crearEvento(){
 
-    //validar primero
-    this.cambiarTextoButton();
+    
     let eventoNuevo = this.obtenerEventoNuevo();
-    console.log(eventoNuevo)
+    
+    //valido si el evento está correcto
+    let resultado=this.validarEvento(eventoNuevo);
+    
+    if(resultado){
+      this.cambiarTextoButton();
 
-    //funcion para subir foto de perfil primero a firebase
-    this.uploadFile(this.imgObject, eventoNuevo); //dentro registro el evento
+      //funcion para subir foto de perfil primero a firebase
+      this.uploadFile(this.imgObject, eventoNuevo); //dentro registro el evento
+    }else{
+      console.log('usuario invalido')
+    }
+
     
   }
 
@@ -154,6 +162,80 @@ export class ModalCrearEventoComponent implements OnInit {
     uno.innerHTML='Creando ...'
     uno.setAttribute('disabled', "true");
 
+  }
+
+  removerClaseInvalid(){
+    var element1 = document.getElementById("inputTitulo");
+    var element2 = document.getElementById("inputImagen");
+    var element3 = document.getElementById("inputDescripcion");
+    var element4 = document.getElementById("inputCosto");
+    var element5 = document.getElementById("inputInscripcion");
+    var element6 = document.getElementById("inputFechaLimite");
+    var element7 = document.getElementById("inputEnlace");
+    
+   
+    element1.classList.remove("is-invalid");
+    element2.classList.remove("is-invalid");
+    element3.classList.remove("is-invalid");
+    element4.classList.remove("is-invalid");
+    element5.classList.remove("is-invalid");
+    element6.classList.remove("is-invalid");
+    element7.classList.remove("is-invalid");
+  
+  }
+
+  //funciones de validacion
+  validarEvento(evento){
+
+    this.removerClaseInvalid()
+    
+    let status=true; //asumo que el evento es valido
+
+    if(evento['titulo']==''){
+      var elemento = document.getElementById("inputTitulo");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    if(evento['descripcion']==''){
+      var elemento = document.getElementById("inputDescripcion");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+
+    if(evento['costo']==''){
+      var elemento = document.getElementById("inputCosto");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    
+    if(!this.url){
+      var elemento = document.getElementById("inputImagen");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    if(evento['inscripcion']==''){
+      var elemento = document.getElementById("inputInscripcion");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    if(evento['fechaLimite']==''){
+      var elemento = document.getElementById("inputFechaLimite");
+      elemento.className += " is-invalid";
+      status=false;
+    } 
+
+    if(evento['enlace']==''){
+      var elemento = document.getElementById("inputEnlace");
+      elemento.className += " is-invalid";
+      status=false;
+    }
+
+    return status
   }
 
 

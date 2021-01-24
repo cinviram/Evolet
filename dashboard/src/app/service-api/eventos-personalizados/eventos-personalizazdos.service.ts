@@ -36,5 +36,9 @@ export class EventosPersonalizazdosService {
     return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/eliminarUsuarioEvento`,dataUser); 
   }
 
+  eliminarEvento(idEvento){
+    return this.http.delete(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/eventos/eliminarEventoPersonalizado/${idEvento}`)
+  }
+
   
 } 
