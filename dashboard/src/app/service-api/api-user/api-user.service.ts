@@ -39,6 +39,10 @@ export class ApiUserService {
     return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerAdministrador/${email}`);
   }
 
+  actualizarAdmin(admin){
+    return this.http.put(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/actualizarAdmin`,admin); 
+  }
+
   obtenerTokens(){
     return this.http.get(`https://us-central1-backend-evolet.cloudfunctions.net/app/api/user/obtenerTokens`);
   }

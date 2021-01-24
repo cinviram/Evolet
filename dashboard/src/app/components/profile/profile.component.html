@@ -1,6 +1,7 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
 <div class="app-container">
     <nav class="nav">
         <a href="#" class="nav__logo">
@@ -29,81 +30,96 @@
                 </a>
             </div>
         </nav>
-        <div class="container">
-            <div class="row -spacing-a">
-                <div class="col-md-12">
-                    <h1>MI PERFIL</h1>
+        <div class="container"> 
+            <div class="row mt-2">
+                    
+                <div class="col-10">
+                    <h1 >MI PERFIL</h1>
+                </div>
+                <div class="col">
                     <button type="button" id=btn_editar class="btn btn-primary"
                         (click)='EditarAdministrador($event)'>{{name_button_edit}}</button>
                 </div>
+            
             </div>
-            <div class="row -spacing-a">
-                <div class="col-md-4">
-                    <div class="profile-image" *ngIf="AuthService.userState as user">
-                        <img src={{usuarioActual.avatar}} class="fullwidth" />
-                        <div class="edit-profile-image">
-                            <span class="edit-profile-image__information">
-                                <span class="fa fa-camera"></span>
-                                <span class="edit-profile-image__label" *ngIf="AuthService.userState as user">
-                                    {{user.email}}
-                                </span>
-                            </span>
-                        </div>
-                    </div>
+        
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4"> <!--DIV IZQUIERDO-->
+                    <img src="{{url}}" class="img-fluid img_perfil" alt="No disponible">
+                    <input *ngIf="!statusInput" type="file" class="form-control-file mt-2" id="inputImgPerfil" 
+                            (change)="readUrl($event)">
                 </div>
-                <div class="col-md-8">
-                    <h5>Información personal</h5>
-                    <div class="row -spacing-b">
-                        <div class="col-md-3">
-                            <p class="-typo-copy">Nombres</p>
-                            <p class="-typo-copy">Correo</p>
-                            <p class="-typo-copy">Fecha de nacimiento</p>
-                            <p class="-typo-copy">Celular</p>
-                            <p class="-typo-copy">Alias</p>
-                            <p class="-typo-copy">Empresa</p>
-                            <p class="-typo-copy">Sexo</p>
-                            <p class="-typo-copy">Linkedin</p>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="col-sm-5">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="nombres"
+                
+                <div class="col-8"> <!--DIV DERECHO-->
+                    <!-- <div class="row">
+                        <h2>Información</h2>
+                    </div> -->
+                    
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Nombres</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="nombres"
                                     placeholder="Nombres completos" [ngModel]="usuarioActual.nombre">
-                        
-                            </div>
-                            <div class="col-sm-5s">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="correo"
-                                    placeholder="Nombres completos" [ngModel]="usuarioActual.email">
-                            </div>
-                            <div class="col-sm-7">
-                                <input [disabled]='statusInput' type="date" class="form-control" id="fec_nac"
-                                    [ngModel]="usuarioActual.fecha_nac">
-                            </div>
-                            <div class="col-sm-50">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="telefono"
-                                    placeholder="Telefono" [ngModel]="usuarioActual.telefono">
-                            </div>
-                            <div class="col-sm-50">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="alias"
-                                    placeholder="Alias" [ngModel]="usuarioActual.alias">
-                            </div>
-                            <div class="col-sm-7">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="empresa"
-                                    [ngModel]="usuarioActual.empresa">
-                            </div>
-                            <div class="col-sm-7">
-                                <select class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
-                                    <option selected value="masculino">Masculino</option>
-                                    <option value="femenino">Femenino</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-20">
-                                <input [disabled]='statusInput' type="text" class="form-control" id="linkedin"
-                                    [ngModel]="usuarioActual.linkedin">
-                            </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Correo</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="correo"
+                                    placeholder="Correo" [ngModel]="usuarioActual.correo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="date" class="form-control" id="fec_nac"
+                                    [ngModel]="usuarioActual.fecha_nac">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Telefono</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="telefono"
+                                    placeholder="Telefono" [ngModel]="usuarioActual.telefono">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Alias</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="alias"
+                                    placeholder="Alias" [ngModel]="usuarioActual.alias">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Empresa (*)</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="empresa"
+                                    [ngModel]="usuarioActual.empresa">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Linkedin (*)</label>
+                        <div class="col-sm-6">
+                            <input [disabled]='statusInput' type="text" class="form-control" id="linkedin"
+                                    [ngModel]="usuarioActual.linkedin">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombres" class="col-sm-3 col-form-label">Sexo (*)</label>
+                        <div class="col-sm-6">
+                            <select [disabled]='statusInput' class="custom-select mr-sm-2" id="sexo" [ngModel]="usuarioActual.sexo">
+                                <option selected value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>

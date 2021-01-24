@@ -149,7 +149,8 @@ export class ModalEventosInfoComponent implements OnInit {
   readUrl(event:any) { 
 
     if(this.banderaImg==false){ //primera vez que va a cambiar la imagen
-      this.banderaImg=true;
+      this.banderaImg=true; 
+      console.log('ha subid una imagen')
     }
 
     if (event.target.files && event.target.files[0]) { 
