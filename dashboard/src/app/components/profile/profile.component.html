@@ -4,20 +4,17 @@
 
 <div class="app-container">
     <nav class="nav">
-        <a href="#" class="nav__logo">
-        </a>
+        <img class="imagenLogo" src="https://static.s123-cdn.com/uploads/1779716/400_5c6dc41fdc925.png" alt="">
         <ul class="list-group">
             <li class="list-group-item" routerLink="../dashboard"><i class="fa fa-users"></i> Usuarios</li>
-            <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i> Agenda
-                General</li>
-            <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i> Agenda
-                Personalizada</li>
-            <li class="list-group-item active"><i class="fas fa-user-circle"></i> Mi Perfil</li>
-            <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
-                <i class="fas fa-sign-out-alt"></i> Salir
-            </button>
+          <li class="list-group-item" routerLink="../agenda-general"><i class="far fa-calendar-check"></i>  Agenda General</li>
+          <li class="list-group-item" routerLink="../agenda-personalizada"><i class="fa fa-address-book"></i>  Agenda Personalizada</li>
+          <li class="list-group-item active" routerLink="../profile"><i class="fas fa-user-circle"></i>  Mi Perfil</li>
+          <button type="button" class="list-group-item list-group-item-action" (click)="AuthService.SignOut()">
+            <i class="fas fa-sign-out-alt"></i> Salir
+          </button>
         </ul>
-    </nav>
+      </nav>
     <div class="app-view">
         <nav class="utility-bar">
             <div class="utility-bar__inner">
