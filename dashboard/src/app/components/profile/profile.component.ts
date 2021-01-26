@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
     var linkedin= objectLinkedin.value
 
     //Admin editado
-    let usuarioModificado={'idUser': this.usuarioActual.idDoc,'nombre': nombre, 
+    let usuarioModificado={'idDoc': this.usuarioActual.idDoc,'nombre': nombre, 
                             'correo':correo, 'telefono':telefono, 'alias':alias, 'sexo':sexo,
                             'fecha_nac':fecha,'empresa':empresa,'linkedin':linkedin,
                             'avatar': this.usuarioActual.avatar, 'password': this.usuarioActual.password,
@@ -177,6 +177,7 @@ export class ProfileComponent implements OnInit {
               'Administrador actualizado',
               'success'
             ).then(response=>{
+              
               localStorage.setItem('evolet-user',JSON.stringify(usuarioActualizado))
               location.reload();
             })
