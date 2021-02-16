@@ -48,6 +48,15 @@ table {
   background-color: #183fbc;
 }
 
+.btn_descargar {
+  padding: 10px;
+  margin: 0 5px;
+  border: 0;
+  color: white;
+  border-radius: .25rem;
+  background-color: #37b6bd;
+}
+
 .btn-delete {
   background-color: #d90000;
 }

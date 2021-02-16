@@ -34,24 +34,21 @@
       <h1>Eventos Generales</h1>
       <div class="row">
         
-        <div class="col-9">
+        <div class="col-7">
           <input type="text" class="form-control" id="inputPassword2" placeholder="Buscar evento" (keyup)='buscarEventoCoincidencia($event)'>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <!--<button type="button" (click)='abrirModalUser()'>Crear </i></button>-->
           <button class="btn" (click)="crearEvento($event)">Crear evento <i class="fa fa-plus"></i></button>
+          
+        </div>
+        <div class="col-3">
+          <button class="btn_descargar" (click)="generatePDF()">Descargar reporte<i class="ml-1 fas fa-download"></i></button>
         </div>
       </div>
       
-      <!--Inicio de información current user-->
-      <!--<div class="container mt-5" style="max-width: 600px">
-        <div class="row" *ngIf="AuthService.userState as user">
-          <h2>Bienvenido: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h2>
-          <p>User ID: <strong>{{user.uid}}</strong></p>
-          <p>Email: <strong>{{user.email}}</strong></p>
-        </div>
-      </div>-->
-      <!--Fin de información current user-->
+      
+      
       <table>
         <thead>
           <tr>
@@ -79,6 +76,7 @@
           </tr>
         </tbody>
       </table>
+    
     </main>
 
   </div>

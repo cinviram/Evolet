@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+
 //Import - servicio
 import { AuthService } from '../../auth/auth.service';
 //Import API
@@ -12,6 +12,9 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
 
+import pdfMake from "pdfmake/build/pdfmake";  
+import pdfFonts from "pdfmake/build/vfs_fonts";  
+pdfMake.vfs = pdfFonts.pdfMake.vfs;      
 
 @Component({
   selector: 'app-agenda-general',
@@ -32,15 +35,18 @@ export class AgendaGeneralComponent implements OnInit {
     public AuthService: AuthService,
     public ApiEventoGeneralService: ApiEventoGeneralService,
     private bsModalService: BsModalService,
-    private bsModalServiceCreacion: BsModalService
 
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit(): void {
     this.ApiEventoGeneralService.obtenerEventos().subscribe(data => {
       //Asignacion a variable global (eventos)
       this.eventosRespaldo=data;
       this.eventos = data;
+
+      console.log(this.eventos)
 
       for(let indice in data){
         let objeto=data[indice];
@@ -53,6 +59,153 @@ export class AgendaGeneralComponent implements OnInit {
       
     })
   }
+
+  generatePDF() {  
+
+    var date = new Date();
+    
+    let docDefinition = {  
+      content: [
+        {  
+          text: 'REPORTE DE EVENTOS GENERALES',  
+          fontSize: 16,  
+          alignment: 'center',  
+          color: '#007bff',
+          bold: true
+        },
+        {  
+          text: 'Evolet',  
+          fontSize: 14,  
+          alignment: 'center',  
+          color: '#007bff',
+          bold: false,
+          margin: [0, 10,0,5]
+        },
+        {  
+          text: `Fecha: ${date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear()}`,  
+          fontSize: 14,  
+          alignment: 'center',  
+          color: '#007bff',
+          bold: false,
+          margin: [0, 5,0,40]
+        } , 
+        
+        {
+          columns: [
+            {
+              // auto-sized columns have their widths based on their content
+              width: '2%',
+              text: '#',
+              style: [ 'cabecera' ],
+              
+            },
+            {
+              // auto-sized columns have their widths based on their content
+              width: '40%',
+              text: 'Titulo',
+              style: [ 'cabecera' ]
+            },
+            {
+              // star-sized columns fill the remaining space
+              // if there's more than one star-column, available width is divided equally
+              width: '*',
+              text: 'Fecha',
+              style: [ 'cabecera' ]
+            },
+            {
+              // fixed width
+              width: '*',
+              text: 'Hora',
+              style: [ 'cabecera' ]
+            },
+            {
+              // percentage width
+              width: '*',
+              text: 'Instructor',
+              style: [ 'cabecera' ]
+            },
+            {
+              // percentage width
+              width: '*',
+              text: 'Costo',
+              style: [ 'cabecera' ]
+            }
+          ],
+          // optional space between columns
+          columnGap: 10
+        },
+        
+       
+      ],
+      styles: {
+        cabecera: {
+          fontSize: 12,
+          bold: true,
+        },
+        cuerpo: {
+          italic: true,
+          alignment: 'left',
+          margin: [0, 5],
+        }
+      }
+    }; 
+    
+    console.log(this.eventosRespaldo.length)
+    for(let i=0;i<this.eventosRespaldo.length;i+=1){
+      let evento=this.eventosRespaldo[i];
+
+      let fila={
+        columns: [
+          {
+            // auto-sized columns have their widths based on their content
+            width: '2%',
+            text: i+1,
+            style: [ 'cuerpo' ],
+            
+          },
+          {
+            // auto-sized columns have their widths based on their content
+            width: '40%',
+            text: evento.titulo,
+            style: [ 'cuerpo' ]
+          },
+          {
+            // star-sized columns fill the remaining space
+            // if there's more than one star-column, available width is divided equally
+            width: '*',
+            text: evento.fechaLimite2[0],
+            style: [ 'cuerpo' ]
+          },
+          {
+            // fixed width
+            width: '*',
+            text: evento.fechaLimite2[1],
+            style: [ 'cuerpo' ]
+          },
+          {
+            // percentage width
+            width: '*',
+            text: evento.nombreInstructor,
+            style: [ 'cuerpo' ]
+          },
+          {
+            // percentage width
+            width: '*',
+            text: evento.costo,
+            style: [ 'cuerpo' ]
+          }
+        ],
+        // optional space between columns
+        columnGap: 10
+      }
+      
+      console.log(fila)
+      docDefinition.content.push(fila);
+
+    }
+    
+    pdfMake.createPdf(docDefinition).open();  
+  }  
 
   eliminarEvento(event){
     console.log(event.target.id)

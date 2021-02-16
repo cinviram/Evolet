@@ -104,6 +104,7 @@ export class AuthService {
           this.router.navigate(['dashboard']);
         })
         this.SetUserData(result.user);
+        
       }).catch((error) => {
         window.alert(error)
       })
@@ -121,6 +122,10 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
+
+    //guardando en el local storage
+    localStorage.setItem('evolet-user',JSON.stringify({'correo': userData.email, 'idDoc': userData.uid,'nombre': userData.displayName}))
+
     return userRef.set(userData, {
       merge: true
     })
@@ -130,6 +135,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('evolet-user');
       this.router.navigate(['login']);
     })
   }

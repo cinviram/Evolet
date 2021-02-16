@@ -33,13 +33,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('evolet-user',objetoUser);
         }
 
-
       })
 
     })
   }
-
-
-
+  
 
 }

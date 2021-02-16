@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 //Import Componentes
@@ -42,6 +41,7 @@ import { ModalCrearEventoComponent } from './components/modal-crear-evento/modal
 import { ModalPersonalizadosInfoComponent } from './components/modal-personalizados-info/modal-personalizados-info.component';
 import { ModalPersonalizadosAsignComponent } from './components/modal-personalizados-asign/modal-personalizados-asign.component';
 import { ModalPersonalizadosCrearComponent } from './components/modal-personalizados-crear/modal-personalizados-crear.component';
+import { Router } from '@angular/router';
 
 
 
@@ -89,4 +89,23 @@ var config = {
   entryComponents: [ModalUserInfoComponent,ModalEventosInfoComponent,ModalCrearUserComponent,ModalCrearEventoComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private router: Router){
+    this.verificarCredenciales();
+  }
+
+  //verificando credenciales
+  verificarCredenciales(){
+    let data=localStorage.getItem('evolet-user');;
+    if(data){
+      console.log('existen credenciales')
+      this.router.navigateByUrl('/dashboard')
+
+    }else{
+      console.log('no hay credenciales')
+      this.router.navigateByUrl('/login')
+    }
+  }
+
+ }
